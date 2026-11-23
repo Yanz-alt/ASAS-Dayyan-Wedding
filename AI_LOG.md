@@ -3,7 +3,7 @@
 
 - **Nama Siswa** : Muhammad Dayyan
 - **Kelas**      : XI RPL 2
-- **Tema**       : Undangan Pernikahan Digital (*The Wedding of Dayyan & Amanda*)
+- **Tema**       : Undangan Pernikahan Digital (*The Wedding of Dayyan & Haimiya*)
 - **Teknologi**  : HTML5, CSS3 (Mobile-First, Glassmorphism), Vanilla JavaScript, Web Audio API
 
 ---
@@ -14,10 +14,10 @@ Salin tabel berikut langsung ke lembar laporan / asesmen Anda:
 
 | No. | Tahap Pengembangan | Tujuan/Masalah yang Diselesaikan | Ringkasan Prompt ke AI | Penyesuaian Manual yang Dilakukan Siswa |
 |---|---|---|---|---|
-| **1** | **Kerangka Struktur & UI Cover** | Menyusun struktur HTML5 semantik untuk Hero Cover full-screen dengan cover overlay, nama mempelai, dan tombol *Buka Undangan*. | *"Buatkan kerangka HTML5 untuk Hero Cover undangan pernikahan full-screen dengan nama mempelai Dayyan & Amanda, kartu nama tamu dinamis, dan tombol interaktif Buka Undangan."* | Menyesuaikan teks judul, menambahkan atribut meta Open Graph, favicon, dan menyusun SVG ornamen bunga agar proporsional di layar HP. |
+| **1** | **Kerangka Struktur & UI Cover** | Menyusun struktur HTML5 semantik untuk Hero Cover full-screen dengan cover overlay, nama mempelai, dan tombol *Buka Undangan*. | *"Buatkan kerangka HTML5 untuk Hero Cover undangan pernikahan full-screen dengan nama mempelai Dayyan & Haimiya, kartu nama tamu dinamis, dan tombol interaktif Buka Undangan."* | Menyesuaikan teks judul, menambahkan atribut meta Open Graph, favicon, dan menyusun SVG ornamen bunga agar proporsional di layar HP. |
 | **2** | **Desain & Responsivitas (CSS)** | Membangun styling mobile-first (360px–414px) dengan tema warna mewah Deep Emerald Green & Champagne Gold serta efek *glassmorphism*. | *"Buatkan styling CSS mobile-first dengan tema warna emerald green dan champagne gold, layout kartu glassmorphism, dan container terpusat saat dibuka di layar laptop/desktop."* | Menambahkan CSS Custom Properties (`--color-primary`, dll), mengatur `clamp()` untuk tipografi responsif, dan menambahkan keyframes animasi pulsa pada tombol. |
 | **3** | **Logika Parameter URL (JS)** | Membaca nama tamu secara dinamis dari query parameter URL (`?to=Nama+Tamu`) dan mengamankannya dari serangan XSS. | *"Buatkan kode JavaScript untuk membaca parameter URL '?to=Nama+Tamu' menggunakan URLSearchParams, menampilkannya di cover, dan sekaligus otomatis mengisikannya ke input form RSVP."* | Menambahkan fungsi proteksi `sanitizeHTML()` untuk mencegah script injection (XSS) dan mengubah judul tab browser secara dinamis sesuai nama tamu. |
-| **4** | **Hitung Mundur & Kalender (JS)** | Membuat countdown timer real-time menuju tanggal acara (12 Desember 2026) dan fitur unduh file `.ics` iCalendar. | *"Buatkan logika JavaScript untuk countdown timer real-time (Hari, Jam, Menit, Detik) dengan pembaruan tiap detik dan fungsi unduh pengingat kalender .ics."* | Mengatur format tanggal target sesuai zona waktu WIB (`+07:00`), menambahkan penomoran `padStart(2, '0')`, dan melengkapi tautan langsung Google Calendar. |
+| **4** | **Hitung Mundur & Kalender (JS)** | Membuat countdown timer real-time menuju tanggal acara (12 Desember 2027) dan fitur unduh file `.ics` iCalendar. | *"Buatkan logika JavaScript untuk countdown timer real-time (Hari, Jam, Menit, Detik) dengan pembaruan tiap detik dan fungsi unduh pengingat kalender .ics."* | Mengatur format tanggal target sesuai zona waktu WIB (`+07:00`), menambahkan penomoran `padStart(2, '0')`, dan melengkapi tautan langsung Google Calendar. |
 | **5** | **Buku Tamu & RSVP (DOM & Storage)** | Membangun formulir RSVP dan daftar ucapan yang tersimpan secara permanen di browser menggunakan `localStorage`. | *"Buatkan logika penanganan form RSVP yang menyimpan ucapan ke localStorage, merender ucapan baru secara langsung ke DOM, serta menghitung total hadir secara otomatis."* | Menambahkan data default sampel ucapan agar buku tamu tidak kosong saat pertama dibuka, menambahkan avatar inisial nama, dan membuat badge status kehadiran (Hadir/Tidak Hadir). |
 | **6** | **Kontrol Audio & Autoplay Policy** | Mengatur pemutaran musik otomatis saat tombol Buka Undangan diklik dan tombol floating disk untuk play/pause. | *"Bagaimana cara memutar musik latar secara otomatis saat tombol buka undangan diklik tanpa terblokir oleh autoplay policy browser, serta membuat tombol floating toggle?"* | Menyematkan event listener pada tombol buka undangan yang memanggil `audio.play()`, mengatur volume ke 0.7 agar tidak mengagetkan, dan membuat animasi putar piringan hitam (*vinyl disc*). |
 | **7** | **Amplop Digital & Clipboard (JS)** | Membuat fitur salin nomor rekening BCA & Mandiri satu kali klik dilengkapi notifikasi visual (*toast*). | *"Buatkan fungsi salin nomor rekening ke clipboard menggunakan navigator.clipboard.writeText dengan fallback execCommand dan popup toast animasi."* | Mengubah teks tombol secara instan menjadi 'Berhasil Disalin ✓' selama 2.5 detik dan menambahkan efek slide-up pada notifikasi toast. |
@@ -46,7 +46,7 @@ Saat guru penguji menanyakan cara kerja kode Anda, berikut adalah jawaban teknis
 - **Penjelasan Teknis**:
   - **Membaca Data**:
     ```javascript
-    const stored = localStorage.getItem('wedding_dayyan_amanda_rsvp_data');
+    const stored = localStorage.getItem('wedding_dayyan_haimiya_rsvp_data');
     const wishes = stored ? JSON.parse(stored) : [];
     ```
     Data dibaca dalam format JSON String, lalu diubah menjadi Array JavaScript menggunakan `JSON.parse()`.
