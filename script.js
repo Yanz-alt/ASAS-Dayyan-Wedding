@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const guestNameElement = document.getElementById('guest-name');
   const rsvpNameInput = document.getElementById('rsvp-name');
+  const rsvpOriginInput = document.getElementById('rsvp-origin');
 
   function sanitizeHTML(str) {
     if (!str) return '';
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4dGNibXVob2d1YmxocWhpZWx4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUzODQwODcsImV4cCI6MjExMDk2MDA4N30.FhMNhQX-xYbr1XKPwQCf0VNrs9cmGQzx0ZoO5KLA6xA'
   };
 
-  function applyGuestName(name, subtitle = '') {
+  function applyGuestName(name, subtitle = '', origin = '') {
     const cleanName = sanitizeHTML(name);
     if (guestNameElement) {
       guestNameElement.textContent = cleanName;
@@ -27,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (rsvpNameInput) {
       rsvpNameInput.value = cleanName;
     }
+    if (rsvpOriginInput && origin) {
+      rsvpOriginInput.value = sanitizeHTML(origin);
+    }
     document.title = `The Wedding of Dayyan & Haimiya - Untuk ${cleanName}`;
   }
 
@@ -34,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const guestId = urlParams.get('id');
     const guestParam = urlParams.get('to') || urlParams.get('n') || urlParams.get('guest');
+    const asalParam = urlParams.get('asal') || urlParams.get('instansi') || urlParams.get('from');
 
     if (guestId && !isNaN(guestId)) {
       if (guestNameElement) guestNameElement.textContent = 'Memuat Data Tamu...';
@@ -48,10 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {
           const guest = data[0];
-          const subtitle = guest.instansi ? `Spesial Mengundang dari ${guest.instansi}` : 'Spesial Mengundang Anda Untuk Hadir';
-          applyGuestName(guest.nama_tamu, subtitle);
+          const origin = guest.instansi || '';
+          const subtitle = origin ? `Spesial Mengundang dari ${origin}` : 'Spesial Mengundang Anda Untuk Hadir';
+          applyGuestName(guest.nama_tamu, subtitle, origin);
         } else if (guestParam && guestParam.trim() !== '') {
-          applyGuestName(guestParam.trim());
+          const origin = asalParam ? asalParam.trim() : '';
+          const subtitle = origin ? `Spesial Mengundang dari ${origin}` : 'Spesial Mengundang Anda Untuk Hadir';
+          applyGuestName(guestParam.trim(), subtitle, origin);
         } else {
           applyGuestName('Tamu Undangan');
         }
@@ -59,7 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => {
         console.warn('Gagal memuat data dari Supabase, beralih ke parameter lokal:', err);
         if (guestParam && guestParam.trim() !== '') {
-          applyGuestName(guestParam.trim());
+          const origin = asalParam ? asalParam.trim() : '';
+          const subtitle = origin ? `Spesial Mengundang dari ${origin}` : 'Spesial Mengundang Anda Untuk Hadir';
+          applyGuestName(guestParam.trim(), subtitle, origin);
         } else {
           applyGuestName('Tamu Undangan');
         }
@@ -67,9 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-
     if (guestParam && guestParam.trim() !== '') {
-      applyGuestName(guestParam.trim());
+      const origin = asalParam ? asalParam.trim() : '';
+      const subtitle = origin ? `Spesial Mengundang dari ${origin}` : 'Spesial Mengundang Anda Untuk Hadir';
+      applyGuestName(guestParam.trim(), subtitle, origin);
     } else {
       if (guestNameElement) {
         guestNameElement.textContent = 'Tamu Undangan';
@@ -501,7 +512,10 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="wish-user">
             <div class="wish-avatar">${sanitizeHTML(getInitials(item.name))}</div>
             <div>
-              <div class="wish-name">${sanitizeHTML(item.name)}</div>
+              <div class="wish-name">
+                ${sanitizeHTML(item.name)}
+                ${item.origin ? `<span class="wish-origin" style="display:block; font-size:0.78rem; opacity:0.8; font-weight:normal; color:#d4af37;"><i class="fa-solid fa-building-user"></i> ${sanitizeHTML(item.origin)}</span>` : ''}
+              </div>
               <span class="wish-status-badge ${badgeClass}">
                 <i class="fa-solid ${badgeIcon}"></i> ${sanitizeHTML(item.attendance)} ${item.attendance === 'Hadir' ? `(${item.guests} orang)` : ''}
               </span>
@@ -534,11 +548,13 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
 
       const nameInput = document.getElementById('rsvp-name');
+      const originInput = document.getElementById('rsvp-origin');
       const messageInput = document.getElementById('rsvp-message');
       const guestsInput = document.getElementById('rsvp-guests');
       const attendanceRadio = document.querySelector('input[name="attendance"]:checked');
 
       const name = nameInput ? nameInput.value.trim() : '';
+      const origin = originInput ? originInput.value.trim() : '';
       const message = messageInput ? messageInput.value.trim() : '';
       const guests = guestsInput ? guestsInput.value : '1';
       const attendance = attendanceRadio ? attendanceRadio.value : 'Hadir';
@@ -551,6 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const newWish = {
         id: 'wish-' + Date.now(),
         name: name,
+        origin: origin,
         attendance: attendance,
         guests: guests,
         message: message,
