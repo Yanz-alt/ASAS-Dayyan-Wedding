@@ -79,12 +79,43 @@
 
   <div class="main-layout">
     
-    <aside class="desktop-side-banner" aria-hidden="true">
+    <aside class="desktop-side-banner">
       <div class="side-banner-content">
         <span class="banner-badge">Official Invitation</span>
         <h2>Dayyan &amp; Haimiya</h2>
         <p class="banner-quote">"Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri..."</p>
         <div class="banner-date">12 . 12 . 2027</div>
+
+        <div class="countdown-container card-glass desktop-countdown">
+          <p class="countdown-heading"><i class="fa-regular fa-clock"></i> Menghitung Hari Menuju Hari Bahagia</p>
+          <div class="countdown-grid" data-target-date="2027-12-12T08:00:00+07:00">
+            <div class="countdown-box">
+              <span class="countdown-number" data-unit="days">00</span>
+              <span class="countdown-label">Hari</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-number" data-unit="hours">00</span>
+              <span class="countdown-label">Jam</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-number" data-unit="minutes">00</span>
+              <span class="countdown-label">Menit</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-number" data-unit="seconds">00</span>
+              <span class="countdown-label">Detik</span>
+            </div>
+          </div>
+
+          <div class="calendar-actions">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Dayyan+%26+Haimiya&dates=20271212T010000Z/20271212T080000Z&details=Undangan+Pernikahan+Dayyan+dan+Haimiya+Mio.+Bertempat+di+Grand+Ballroom+Grand+Pacific+Hotel,+Bandung.&location=Grand+Pacific+Hotel,+Bandung" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+              <i class="fa-brands fa-google"></i> Simpan ke Google Calendar
+            </a>
+            <button class="btn-outline btn-ics-calendar">
+              <i class="fa-regular fa-calendar-plus"></i> Unduh File Kalender (.ics)
+            </button>
+          </div>
+        </div>
       </div>
     </aside>
 
@@ -169,23 +200,23 @@
           <p class="section-desc">Insya Allah acara pernikahan kami akan diselenggarakan pada:</p>
         </div>
 
-        <div class="countdown-container card-glass animate-on-scroll">
+        <div class="countdown-container card-glass animate-on-scroll mobile-countdown">
           <p class="countdown-heading"><i class="fa-regular fa-clock"></i> Menghitung Hari Menuju Hari Bahagia</p>
           <div class="countdown-grid" id="countdown-timer" data-target-date="2027-12-12T08:00:00+07:00">
             <div class="countdown-box">
-              <span class="countdown-number" id="days">00</span>
+              <span class="countdown-number" id="days" data-unit="days">00</span>
               <span class="countdown-label">Hari</span>
             </div>
             <div class="countdown-box">
-              <span class="countdown-number" id="hours">00</span>
+              <span class="countdown-number" id="hours" data-unit="hours">00</span>
               <span class="countdown-label">Jam</span>
             </div>
             <div class="countdown-box">
-              <span class="countdown-number" id="minutes">00</span>
+              <span class="countdown-number" id="minutes" data-unit="minutes">00</span>
               <span class="countdown-label">Menit</span>
             </div>
             <div class="countdown-box">
-              <span class="countdown-number" id="seconds">00</span>
+              <span class="countdown-number" id="seconds" data-unit="seconds">00</span>
               <span class="countdown-label">Detik</span>
             </div>
           </div>
@@ -195,7 +226,7 @@
             <a id="btn-google-calendar" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Dayyan+%26+Haimiya&dates=20271212T010000Z/20271212T080000Z&details=Undangan+Pernikahan+Dayyan+dan+Haimiya+Mio.+Bertempat+di+Grand+Ballroom+Grand+Pacific+Hotel,+Bandung.&location=Grand+Pacific+Hotel,+Bandung" target="_blank" rel="noopener noreferrer" class="btn-secondary">
               <i class="fa-brands fa-google"></i> Simpan ke Google Calendar
             </a>
-            <button id="btn-ics-calendar" class="btn-outline">
+            <button id="btn-ics-calendar" class="btn-outline btn-ics-calendar">
               <i class="fa-regular fa-calendar-plus"></i> Unduh File Kalender (.ics)
             </button>
           </div>

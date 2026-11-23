@@ -160,31 +160,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  const countdownElement = document.getElementById('countdown-timer');
-  const daysEl = document.getElementById('days');
-  const hoursEl = document.getElementById('hours');
-  const minutesEl = document.getElementById('minutes');
-  const secondsEl = document.getElementById('seconds');
-
-
   const padZero = (num) => String(num).padStart(2, '0');
 
   function initCountdown() {
-    if (!countdownElement) return;
+    const targetDate = new Date('2027-12-12T08:00:00+07:00').getTime();
 
-
-    const targetDateAttr = countdownElement.getAttribute('data-target-date');
-    const targetDate = targetDateAttr ? new Date(targetDateAttr).getTime() : new Date('2027-12-12T08:00:00+07:00').getTime();
+    const daysEls = document.querySelectorAll('[data-unit="days"], #days');
+    const hoursEls = document.querySelectorAll('[data-unit="hours"], #hours');
+    const minutesEls = document.querySelectorAll('[data-unit="minutes"], #minutes');
+    const secondsEls = document.querySelectorAll('[data-unit="seconds"], #seconds');
 
     function updateTimer() {
       const now = new Date().getTime();
       const distance = targetDate - now;
 
       if (distance <= 0) {
-        if (daysEl) daysEl.textContent = '00';
-        if (hoursEl) hoursEl.textContent = '00';
-        if (minutesEl) minutesEl.textContent = '00';
-        if (secondsEl) secondsEl.textContent = '00';
+        daysEls.forEach(el => el.textContent = '00');
+        hoursEls.forEach(el => el.textContent = '00');
+        minutesEls.forEach(el => el.textContent = '00');
+        secondsEls.forEach(el => el.textContent = '00');
         return;
       }
 
@@ -193,10 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      if (daysEl) daysEl.textContent = padZero(days);
-      if (hoursEl) hoursEl.textContent = padZero(hours);
-      if (minutesEl) minutesEl.textContent = padZero(minutes);
-      if (secondsEl) secondsEl.textContent = padZero(seconds);
+      daysEls.forEach(el => el.textContent = padZero(days));
+      hoursEls.forEach(el => el.textContent = padZero(hours));
+      minutesEls.forEach(el => el.textContent = padZero(minutes));
+      secondsEls.forEach(el => el.textContent = padZero(seconds));
     }
 
     updateTimer();
@@ -205,38 +199,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initCountdown();
 
-  const btnIcsCalendar = document.getElementById('btn-ics-calendar');
-  if (btnIcsCalendar) {
-    btnIcsCalendar.addEventListener('click', () => {
-      const icsContent = [
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//Dayyan & Haimiya Wedding//ID',
-        'CALSCALE:GREGORIAN',
-        'METHOD:PUBLISH',
-        'BEGIN:VEVENT',
-        'UID:wedding-dayyan-haimiya-2027@domain.com',
-        'DTSTAMP:20270101T000000Z',
-        'DTSTART:20271212T010000Z',
-        'DTEND:20271212T080000Z',
-        'SUMMARY:The Wedding of Dayyan & Haimiya',
-        'DESCRIPTION:Pernikahan Dayyan & Haimiya di Grand Ballroom Grand Pacific Hotel Bandung.',
-        'LOCATION:Grand Pacific Hotel, Jl. Pasir Kaliki No. 100, Bandung',
-        'STATUS:CONFIRMED',
-        'END:VEVENT',
-        'END:VCALENDAR'
-      ].join('\r\n');
+  function downloadIcsCalendar() {
+    const icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Dayyan & Haimiya Wedding//ID',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:wedding-dayyan-haimiya-2027@domain.com',
+      'DTSTAMP:20270101T000000Z',
+      'DTSTART:20271212T010000Z',
+      'DTEND:20271212T080000Z',
+      'SUMMARY:The Wedding of Dayyan & Haimiya',
+      'DESCRIPTION:Pernikahan Dayyan & Haimiya di Grand Ballroom Grand Pacific Hotel Bandung.',
+      'LOCATION:Grand Pacific Hotel, Jl. Pasir Kaliki No. 100, Bandung',
+      'STATUS:CONFIRMED',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
 
-      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      link.setAttribute('download', 'Pernikahan_Dayyan_Haimiya.ics');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      showToast('File kalender (.ics) berhasil diunduh!');
-    });
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.setAttribute('download', 'Pernikahan_Dayyan_Haimiya.ics');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showToast('File kalender (.ics) berhasil diunduh!');
   }
+
+  document.querySelectorAll('.btn-ics-calendar, #btn-ics-calendar').forEach(btn => {
+    btn.addEventListener('click', downloadIcsCalendar);
+  });
 
 
   const toast = document.getElementById('toast');
