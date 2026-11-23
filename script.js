@@ -1,32 +1,8 @@
-/**
- * ==============================================================================
- * THE WEDDING OF DAYYAN & HAIMIYA - JAVASCRIPT LOGIC
- * Asesmen Sumatif Akhir Semester (ASAS) XI RPL 2
- * 
- * Modul Lengkap:
- * 1. Parameter URL Dinamis (?to=Nama+Tamu) & Proteksi XSS
- * 2. Buka Undangan (Hero Cover Transition & Autoplay Audio)
- * 3. Kontrol Musik Latar (Floating Music Button)
- * 4. Hitung Mundur Real-time (Countdown Timer) & Simpan Kalender (.ics)
- * 5. Navigasi & Salin ke Clipboard (Amplop Digital & Toast Notification)
- * 6. Galeri Foto & Interactive Lightbox Modal
- * 7. Konfirmasi RSVP & Buku Tamu Persisten (localStorage)
- * 8. Animasi Gulir Halaman (Intersection Observer)
- * ==============================================================================
- */
-
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ============================================================================
-  // 1. FITUR 1: NAMA TAMU DINAMIS VIA URL PARAMETER (?to=Nama+Tamu)
-  // ============================================================================
   const guestNameElement = document.getElementById('guest-name');
   const rsvpNameInput = document.getElementById('rsvp-name');
 
-  /**
-   * Mengamankan teks dari potensi serangan Cross-Site Scripting (XSS)
-   * Menggantikan karakter <, >, ", ', & dengan HTML entities
-   */
   function sanitizeHTML(str) {
     if (!str) return '';
     const temp = document.createElement('div');
@@ -34,17 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return temp.innerHTML;
   }
 
-  /**
-   * Konfigurasi Supabase untuk integrasi Database Tamu Undangan
-   */
   const SUPABASE_CONFIG = {
     url: 'https://rxtcbmuhogublhqhielx.supabase.co',
     anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4dGNibXVob2d1YmxocWhpZWx4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUzODQwODcsImV4cCI6MjExMDk2MDA4N30.FhMNhQX-xYbr1XKPwQCf0VNrs9cmGQzx0ZoO5KLA6xA'
   };
 
-  /**
-   * Menampilkan nama tamu dan memperbarui DOM
-   */
   function applyGuestName(name, subtitle = '') {
     const cleanName = sanitizeHTML(name);
     if (guestNameElement) {
@@ -60,17 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.title = `The Wedding of Dayyan & Haimiya - Untuk ${cleanName}`;
   }
 
-  /**
-   * Membaca nama tamu secara dinamis:
-   * 1. Berdasarkan parameter ?id= (Query ke Database Supabase)
-   * 2. Berdasarkan parameter ?to= (Query string langsung)
-   */
   function initDynamicGuestName() {
     const urlParams = new URLSearchParams(window.location.search);
     const guestId = urlParams.get('id');
     const guestParam = urlParams.get('to') || urlParams.get('n') || urlParams.get('guest');
 
-    // Prioritas 1: Ambil data dinamis dari Supabase jika ada ?id= (misal: ?id=1)
     if (guestId && !isNaN(guestId)) {
       if (guestNameElement) guestNameElement.textContent = 'Memuat Data Tamu...';
 
@@ -103,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Prioritas 2: Baca parameter teks langsung (?to=Nama+Tamu)
+
     if (guestParam && guestParam.trim() !== '') {
       applyGuestName(guestParam.trim());
     } else {
@@ -115,10 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initDynamicGuestName();
 
-
-  // ============================================================================
-  // 2. FITUR 1 & 6: KONTROL MUSIK & MEMBUKA SAMPUL (HERO COVER)
-  // ============================================================================
   const heroCover = document.getElementById('hero-cover');
   const btnOpenInvitation = document.getElementById('btn-open-invitation');
   const bgMusic = document.getElementById('bg-music');
@@ -128,12 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let isPlaying = false;
 
-  /**
-   * Memutar audio dengan menangani Browser Autoplay Policy
-   */
+
   function playAudio() {
     if (!bgMusic) return;
-    bgMusic.volume = 0.7; // Volume seimbang
+    bgMusic.volume = 0.7; 
     bgMusic.play().then(() => {
       isPlaying = true;
       if (musicDisc) musicDisc.classList.add('playing');
@@ -147,9 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /**
-   * Menghentikan audio
-   */
+
   function pauseAudio() {
     if (!bgMusic) return;
     bgMusic.pause();
@@ -161,18 +117,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Event klik "Buka Undangan"
+
   if (btnOpenInvitation && heroCover) {
     btnOpenInvitation.addEventListener('click', () => {
-      // Buka animasi slide up cover
+   
       heroCover.classList.add('opened');
-      // Aktifkan scroll pada halaman utama
+
       document.body.classList.remove('no-scroll');
 
-      // Putar musik latar otomatis
+
       playAudio();
 
-      // Trigger scroll ke intro secara halus setelah transisi cover
+
       setTimeout(() => {
         const introSection = document.getElementById('intro');
         if (introSection) {
@@ -182,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Event klik floating music button untuk toggle play/pause
   if (musicToggle) {
     musicToggle.addEventListener('click', () => {
       if (isPlaying) {
@@ -194,22 +149,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // ============================================================================
-  // 3. FITUR 2: COUNTDOWN TIMER & SIMPAN KALENDER
-  // ============================================================================
   const countdownElement = document.getElementById('countdown-timer');
   const daysEl = document.getElementById('days');
   const hoursEl = document.getElementById('hours');
   const minutesEl = document.getElementById('minutes');
   const secondsEl = document.getElementById('seconds');
 
-  // Format angka dengan dua digit (contoh: 07)
+
   const padZero = (num) => String(num).padStart(2, '0');
 
   function initCountdown() {
     if (!countdownElement) return;
 
-    // Tanggal acara: Sabtu, 12 Desember 2027 pukul 08:00 WIB
+
     const targetDateAttr = countdownElement.getAttribute('data-target-date');
     const targetDate = targetDateAttr ? new Date(targetDateAttr).getTime() : new Date('2027-12-12T08:00:00+07:00').getTime();
 
@@ -242,7 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initCountdown();
 
-  // Tombol Unduh File Kalender .ICS (iCalendar standard untuk Apple/Outlook/Google)
   const btnIcsCalendar = document.getElementById('btn-ics-calendar');
   if (btnIcsCalendar) {
     btnIcsCalendar.addEventListener('click', () => {
@@ -277,9 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // ============================================================================
-  // 4. FITUR 3: SALIN NOMOR REKENING / ALAMAT & TOAST NOTIFICATION
-  // ============================================================================
   const toast = document.getElementById('toast');
   const toastMessage = document.getElementById('toast-message');
   let toastTimeout;
@@ -295,7 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3200);
   }
 
-  // Tangani semua tombol salin data
   const copyButtons = document.querySelectorAll('.btn-copy');
   copyButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -350,9 +297,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // ============================================================================
-  // 5. FITUR 4: GALERI FOTO & INTERACTIVE LIGHTBOX
-  // ============================================================================
   const galleryItems = document.querySelectorAll('.gallery-item');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
@@ -393,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!lightbox) return;
     lightbox.classList.remove('active');
     lightbox.setAttribute('aria-hidden', 'true');
-    // Pulihkan scroll body jika hero cover sudah dibuka
+
     if (heroCover && heroCover.classList.contains('opened')) {
       document.body.style.overflow = '';
     }
@@ -421,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lightboxNext) lightboxNext.addEventListener('click', showNextPhoto);
   if (lightboxPrev) lightboxPrev.addEventListener('click', showPrevPhoto);
 
-  // Keyboard navigation untuk lightbox
+
   document.addEventListener('keydown', (e) => {
     if (!lightbox || !lightbox.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightbox();
@@ -429,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'ArrowLeft') showPrevPhoto();
   });
 
-  // Tutup lightbox saat klik di luar gambar
+
   if (lightbox) {
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) {
@@ -439,9 +383,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // ============================================================================
-  // 6. FITUR 5: FORMULIR RSVP & BUKU TAMU PERSISTEN (LOCALSTORAGE)
-  // ============================================================================
   const rsvpForm = document.getElementById('rsvp-form');
   const wishesList = document.getElementById('wishes-list');
   const totalWishesBadge = document.getElementById('total-wishes-badge');
@@ -449,7 +390,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const STORAGE_KEY = 'wedding_dayyan_haimiya_rsvp_data';
 
-  // Data bawaan awal agar buku tamu langsung terlihat indah saat pertama kali dibuka
   const defaultWishes = [
     {
       id: 'default-1',
@@ -477,9 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  /**
-   * Mengambil data ucapan dari localStorage atau inisialisasi default
-   */
+
   function getStoredWishes() {
     try {
       const data = localStorage.getItem(STORAGE_KEY);
@@ -489,14 +427,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       console.warn('Gagal membaca localStorage:', err);
     }
-    // Jika belum ada data, simpan data default
+
     saveWishesToStorage(defaultWishes);
     return defaultWishes;
   }
 
-  /**
-   * Menyimpan array ucapan ke localStorage
-   */
+
   function saveWishesToStorage(wishes) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(wishes));
@@ -505,9 +441,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /**
-   * Format waktu ramah pengguna (contoh: "Baru saja", "2 jam lalu", atau tanggal)
-   */
   function formatRelativeTime(dateString) {
     const now = new Date();
     const past = new Date(dateString);
@@ -529,9 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /**
-   * Mengambil inisial nama untuk avatar
-   */
+
   function getInitials(name) {
     if (!name) return 'U';
     const parts = name.trim().split(/\s+/);
@@ -539,16 +470,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return (parts[0][0] + parts[1][0]).toUpperCase();
   }
 
-  /**
-   * Merender daftar ucapan ke elemen DOM
-   */
+ 
   function renderWishes() {
     if (!wishesList) return;
 
     const wishes = getStoredWishes();
     wishesList.innerHTML = '';
 
-    // Hitung statistik
     let totalAttending = 0;
 
     wishes.forEach((item) => {
@@ -556,7 +484,6 @@ document.addEventListener('DOMContentLoaded', () => {
         totalAttending += parseInt(item.guests || '1', 10);
       }
 
-      // Tentukan badge kehadiran
       let badgeClass = 'hadir';
       let badgeIcon = 'fa-check';
       if (item.attendance === 'Tidak Hadir') {
@@ -590,7 +517,6 @@ document.addEventListener('DOMContentLoaded', () => {
       wishesList.appendChild(wishItemEl);
     });
 
-    // Update badges statistik
     if (totalWishesBadge) {
       totalWishesBadge.innerHTML = `<i class="fa-solid fa-envelope"></i> ${wishes.length} Ucapan`;
     }
@@ -599,10 +525,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Render saat pertama kali dimuat
+
   renderWishes();
 
-  // Tangani submit formulir RSVP
+
   if (rsvpForm) {
     rsvpForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -632,14 +558,14 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       const wishes = getStoredWishes();
-      // Tambahkan data baru di urutan teratas
+   
       wishes.unshift(newWish);
       saveWishesToStorage(wishes);
 
-      // Render ulang daftar ucapan
+   
       renderWishes();
 
-      // Reset textarea pesan
+    
       if (messageInput) messageInput.value = '';
 
       showToast('Terima kasih! Konfirmasi & ucapan Anda telah tersimpan.');
@@ -654,7 +580,7 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          obs.unobserve(entry.target); // Cukup animasi sekali untuk performa optimal
+          obs.unobserve(entry.target);
         }
       });
     }, {

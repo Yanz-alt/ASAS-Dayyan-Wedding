@@ -22,7 +22,6 @@
 </head>
 <body class="no-scroll">
 
-  <!-- Background Music with Multiple Sources for Maximum Compatibility -->
   <audio id="bg-music" preload="auto" loop>
     <source src="audio/I Need a Love Story.mp3" type="audio/mpeg">
     <source src="audio/wedding-song.mp3" type="audio/mpeg">
@@ -80,7 +79,6 @@
 
   <div class="main-layout">
     
-    <!-- DESKTOP BACKGROUND DECORATION -->
     <aside class="desktop-side-banner" aria-hidden="true">
       <div class="side-banner-content">
         <span class="banner-badge">Official Invitation</span>
@@ -117,9 +115,6 @@
         </div>
       </section>
 
-      <!-- ==========================================
-           PROFIL MEMPELAI (THE COUPLE)
-      =========================================== -->
       <section class="section couple-section animate-on-scroll" id="couple">
         <div class="section-heading text-center">
           <span class="sub-heading">Mempelai Berbahagia</span>
@@ -129,7 +124,6 @@
         </div>
 
         <div class="couple-cards-wrapper">
-          <!-- MEMPELAI PRIA -->
           <div class="card-glass couple-profile-card animate-on-scroll">
             <div class="profile-photo-circle">
               <img src="images/groom.jpg" alt="Dayyan Nafi Zafir Rusman" loading="lazy">
@@ -145,10 +139,10 @@
             </a>
           </div>
 
-          <!-- DIVIDER AMPERSAND -->
+
           <div class="couple-ampersand">&amp;</div>
 
-          <!-- MEMPELAI WANITA -->
+
           <div class="card-glass couple-profile-card animate-on-scroll">
             <div class="profile-photo-circle">
               <img src="images/bride.jpg" alt="Haimiya Mio" loading="lazy">
@@ -166,9 +160,7 @@
         </div>
       </section>
 
-      <!-- ===============================================================
-           FITUR 2: INFORMASI ACARA & HITUNG MUNDUR (COUNTDOWN TIMER)
-      ================================================================ -->
+
       <section class="section event-section animate-on-scroll" id="event">
         <div class="section-heading text-center">
           <span class="sub-heading">Save The Date</span>
@@ -177,7 +169,6 @@
           <p class="section-desc">Insya Allah acara pernikahan kami akan diselenggarakan pada:</p>
         </div>
 
-        <!-- COUNTDOWN TIMER CONTAINER -->
         <div class="countdown-container card-glass animate-on-scroll">
           <p class="countdown-heading"><i class="fa-regular fa-clock"></i> Menghitung Hari Menuju Hari Bahagia</p>
           <div class="countdown-grid" id="countdown-timer" data-target-date="2027-12-12T08:00:00+07:00">
@@ -198,7 +189,8 @@
               <span class="countdown-label">Detik</span>
             </div>
           </div>
-          <!-- BUTTON SIMPAN KE KALENDER -->
+  
+
           <div class="calendar-actions">
             <a id="btn-google-calendar" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Dayyan+%26+Haimiya&dates=20271212T010000Z/20271212T080000Z&details=Undangan+Pernikahan+Dayyan+dan+Haimiya+Mio.+Bertempat+di+Grand+Ballroom+Grand+Pacific+Hotel,+Bandung.&location=Grand+Pacific+Hotel,+Bandung" target="_blank" rel="noopener noreferrer" class="btn-secondary">
               <i class="fa-brands fa-google"></i> Simpan ke Google Calendar
@@ -209,9 +201,9 @@
           </div>
         </div>
 
-        <!-- EVENT CARDS (AKAD & RESEPSI) -->
+
         <div class="event-cards-grid">
-          <!-- AKAD NIKAH -->
+
           <div class="card-glass event-card animate-on-scroll">
             <div class="event-badge"><i class="fa-solid fa-ring"></i> Akad Nikah</div>
             <div class="event-time-row">
@@ -235,7 +227,6 @@
             <div class="event-tag">Khusus Keluarga &amp; Tamu Terdekat</div>
           </div>
 
-          <!-- RESEPSI PERNIKAHAN -->
           <div class="card-glass event-card animate-on-scroll">
             <div class="event-badge highlight"><i class="fa-solid fa-champagne-glasses"></i> Resepsi Pernikahan</div>
             <div class="event-time-row">
@@ -261,9 +252,6 @@
         </div>
       </section>
 
-      <!-- ===============================================================
-           FITUR 3: NAVIGASI LOKASI GOOGLE MAPS
-      ================================================================ -->
       <section class="section maps-section animate-on-scroll" id="location">
         <div class="section-heading text-center">
           <span class="sub-heading">Denah &amp; Arah</span>
@@ -294,9 +282,6 @@
         </div>
       </section>
 
-      <!-- ===============================================================
-           FITUR 4: GALERI FOTO & SCROLL ANIMATION + LIGHTBOX
-      ================================================================ -->
       <section class="section gallery-section animate-on-scroll" id="gallery">
         <div class="section-heading text-center">
           <span class="sub-heading">Momen Bahagia Kami</span>
@@ -305,7 +290,6 @@
           <p class="section-desc">Koleksi potret perjalanan kasih kami berdua</p>
         </div>
 
-        <!-- GALLERY GRID (MINIMAL 4 FOTO, KITA SEDIAKAN 6 FOTO ESTETIK) -->
         <div class="gallery-grid">
           <div class="gallery-item animate-on-scroll" data-index="0" data-caption="Pertemuan awal yang penuh makna">
             <img src="images/gallery1.jpg" alt="Galeri Foto 1" loading="lazy">
@@ -334,7 +318,7 @@
         </div>
       </section>
 
-      <!-- LIGHTBOX MODAL POPUP -->
+
       <div id="lightbox" class="lightbox-modal" aria-hidden="true" role="dialog">
         <button id="lightbox-close" class="lightbox-close-btn" aria-label="Tutup Galeri">&times;</button>
         <button id="lightbox-prev" class="lightbox-nav-btn prev" aria-label="Foto Sebelumnya">&#10094;</button>
@@ -346,9 +330,6 @@
         </div>
       </div>
 
-      <!-- ===============================================================
-           FITUR 3: AMPLOP DIGITAL / TANDA KASIH (COPY TO CLIPBOARD)
-      ================================================================ -->
       <section class="section gift-section animate-on-scroll" id="gift">
         <div class="section-heading text-center">
           <span class="sub-heading">Tanda Kasih</span>
@@ -358,7 +339,7 @@
         </div>
 
         <div class="gift-cards-container">
-          <!-- REKENING BANK BCA -->
+
           <div class="card-glass bank-card animate-on-scroll">
             <div class="bank-header">
               <span class="bank-name">BANK BCA</span>
@@ -376,7 +357,6 @@
             </div>
           </div>
 
-          <!-- REKENING BANK MANDIRI -->
           <div class="card-glass bank-card animate-on-scroll">
             <div class="bank-header">
               <span class="bank-name">BANK MANDIRI</span>
@@ -394,7 +374,7 @@
             </div>
           </div>
 
-          <!-- KIRIM KADO FISIK -->
+
           <div class="card-glass bank-card animate-on-scroll">
             <div class="bank-header">
               <span class="bank-name">KIRIM KADO FISIK</span>
@@ -413,9 +393,7 @@
         </div>
       </section>
 
-      <!-- ===============================================================
-           FITUR 5: FORMULIR RSVP & BUKU TAMU PERSISTEN (LOCALSTORAGE)
-      ================================================================ -->
+
       <section class="section rsvp-section animate-on-scroll" id="rsvp">
         <div class="section-heading text-center">
           <span class="sub-heading">Konfirmasi &amp; Doa</span>
@@ -424,7 +402,7 @@
           <p class="section-desc">Mohon konfirmasi kehadiran Anda demi kenyamanan bersama</p>
         </div>
 
-        <!-- FORM KONFIRMASI KEHADIRAN -->
+  
         <div class="card-glass rsvp-form-card animate-on-scroll">
           <form id="rsvp-form" class="rsvp-form">
             <div class="form-group">
@@ -471,7 +449,7 @@
           </form>
         </div>
 
-        <!-- BUKU TAMU / DAFTAR UCAPAN PERSISTEN -->
+
         <div class="guestbook-container card-glass animate-on-scroll">
           <div class="guestbook-header">
             <h3><i class="fa-solid fa-book-open"></i> Buku Tamu &amp; Doa Restu</h3>
@@ -481,16 +459,14 @@
             </div>
           </div>
 
-          <!-- LIST UCAPAN (DIMUAT DAN DIRENDER OLEH JAVASCRIPT) -->
+
           <div id="wishes-list" class="wishes-list" role="feed" aria-live="polite">
-            <!-- Item ucapan akan di-inject lewat JavaScript -->
+
           </div>
         </div>
       </section>
 
-      <!-- ==========================================
-           PENUTUP & DOA KELUARGA
-      =========================================== -->
+
       <section class="section closing-section animate-on-scroll text-center" id="closing">
         <div class="card-glass">
           <div class="floral-ornament">

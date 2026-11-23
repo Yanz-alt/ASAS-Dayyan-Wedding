@@ -1,12 +1,4 @@
-/* ==========================================================================
-   THE WEDDING OF DAYYAN & AMANDA - STYLESHEET
-   Desain: Mobile-First, Modern Luxury Emerald & Champagne Gold
-   Untuk: Asesmen Sumatif Akhir Semester (ASAS) XI RPL 2
-   ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   1. CSS VARIABLES (DESIGN TOKENS)
-   -------------------------------------------------------------------------- */
 :root {
   --color-primary: #1e392a;        /* Deep Emerald Green */
   --color-primary-light: #2c4f3b;  /* Forest Sage */
@@ -42,9 +34,6 @@
   --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* --------------------------------------------------------------------------
-   2. GLOBAL RESET & BASE STYLES
-   -------------------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -94,9 +83,6 @@ button, input, select, textarea {
   width: 100%;
 }
 
-/* --------------------------------------------------------------------------
-   3. DESKTOP & MOBILE WRAPPER ARCHITECTURE (MOBILE-FIRST)
-   -------------------------------------------------------------------------- */
 .main-layout {
   display: flex;
   justify-content: center;
@@ -105,7 +91,7 @@ button, input, select, textarea {
   background: radial-gradient(circle at 10% 20%, #e8e0d1 0%, #ded5c2 90%);
 }
 
-/* Banner dekorasi di layar desktop (> 1024px) */
+
 .desktop-side-banner {
   display: none;
 }
@@ -170,7 +156,7 @@ button, input, select, textarea {
   }
 }
 
-/* Container utama undangan berformat Mobile-First (Max 480px) */
+
 .invitation-container {
   width: 100%;
   max-width: 500px;
@@ -189,9 +175,7 @@ button, input, select, textarea {
   }
 }
 
-/* --------------------------------------------------------------------------
-   4. FITUR 1: COVER / HERO SAMPUL UNDANGAN (FULLSCREEN OVERLAY)
-   -------------------------------------------------------------------------- */
+
 .hero-cover {
   position: fixed;
   inset: 0;
@@ -310,9 +294,6 @@ button, input, select, textarea {
   font-style: italic;
 }
 
-/* --------------------------------------------------------------------------
-   5. TOMBOL & INTERAKSI (BUTTONS)
-   -------------------------------------------------------------------------- */
 .btn-primary, .btn-secondary, .btn-outline, .btn-copy {
   display: inline-flex;
   align-items: center;
@@ -384,9 +365,6 @@ button, input, select, textarea {
   color: #ffffff;
 }
 
-/* --------------------------------------------------------------------------
-   6. FITUR 6: FLOATING MUSIC TOGGLE BUTTON
-   -------------------------------------------------------------------------- */
 .floating-music-btn {
   position: fixed;
   bottom: 24px;
@@ -443,9 +421,7 @@ button, input, select, textarea {
   to { transform: rotate(360deg); }
 }
 
-/* --------------------------------------------------------------------------
-   7. CARD & SECTION COMMON STYLES
-   -------------------------------------------------------------------------- */
+
 .section {
   margin-bottom: 2.5rem;
   position: relative;
@@ -506,9 +482,6 @@ button, input, select, textarea {
   margin: 0 auto;
 }
 
-/* --------------------------------------------------------------------------
-   8. INTRO & QURAN SECTION
-   -------------------------------------------------------------------------- */
 .badge-pill {
   display: inline-block;
   padding: 4px 14px;
@@ -585,9 +558,7 @@ button, input, select, textarea {
   letter-spacing: 1px;
 }
 
-/* --------------------------------------------------------------------------
-   9. PROFIL MEMPELAI (GROOM & BRIDE)
-   -------------------------------------------------------------------------- */
+
 .couple-cards-wrapper {
   display: flex;
   flex-direction: column;
@@ -659,9 +630,6 @@ button, input, select, textarea {
   line-height: 1;
 }
 
-/* --------------------------------------------------------------------------
-   10. FITUR 2: INFORMASI ACARA & COUNTDOWN TIMER
-   -------------------------------------------------------------------------- */
 .countdown-container {
   text-align: center;
   margin-bottom: 1.5rem;
@@ -831,9 +799,7 @@ button, input, select, textarea {
   text-align: center;
 }
 
-/* --------------------------------------------------------------------------
-   11. FITUR 3: NAVIGASI LOKASI (GOOGLE MAPS)
-   -------------------------------------------------------------------------- */
+
 .map-responsive-container {
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -859,9 +825,7 @@ button, input, select, textarea {
   margin-top: 0.4rem;
 }
 
-/* --------------------------------------------------------------------------
-   12. FITUR 4: GALERI FOTO & LIGHTBOX
-   -------------------------------------------------------------------------- */
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1011,9 +975,7 @@ button, input, select, textarea {
   right: 16px;
 }
 
-/* --------------------------------------------------------------------------
-   13. FITUR 3: AMPLOP DIGITAL (DIGITAL GIFT) & TOAST
-   -------------------------------------------------------------------------- */
+
 .gift-cards-container {
   display: flex;
   flex-direction: column;
@@ -1143,9 +1105,7 @@ button, input, select, textarea {
   font-size: 1.1rem;
 }
 
-/* --------------------------------------------------------------------------
-   14. FITUR 5: RSVP & BUKU TAMU PERSISTEN (LOCALSTORAGE)
-   -------------------------------------------------------------------------- */
+
 .rsvp-form-card {
   margin-bottom: 1.5rem;
 }
@@ -1287,7 +1247,6 @@ button, input, select, textarea {
   padding-right: 4px;
 }
 
-/* Custom Scrollbar */
 .wishes-list::-webkit-scrollbar {
   width: 5px;
 }
@@ -1382,9 +1341,6 @@ button, input, select, textarea {
   gap: 6px;
 }
 
-/* --------------------------------------------------------------------------
-   15. CLOSING & FOOTER
-   -------------------------------------------------------------------------- */
 .closing-text {
   font-size: 0.88rem;
   color: var(--color-text-muted);
@@ -1431,9 +1387,7 @@ button, input, select, textarea {
   margin-top: 4px;
 }
 
-/* --------------------------------------------------------------------------
-   16. SCROLL ANIMATION & KEYFRAMES
-   -------------------------------------------------------------------------- */
+
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(30px);
