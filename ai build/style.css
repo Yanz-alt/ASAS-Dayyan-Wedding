@@ -1,0 +1,1463 @@
+/* ==========================================================================
+   THE WEDDING OF DAYYAN & AMANDA - STYLESHEET
+   Desain: Mobile-First, Modern Luxury Emerald & Champagne Gold
+   Untuk: Asesmen Sumatif Akhir Semester (ASAS) XI RPL 2
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS VARIABLES (DESIGN TOKENS)
+   -------------------------------------------------------------------------- */
+:root {
+  --color-primary: #1e392a;        /* Deep Emerald Green */
+  --color-primary-light: #2c4f3b;  /* Forest Sage */
+  --color-secondary: #c59b27;      /* Warm Champagne Gold */
+  --color-gold-light: #f3e5ab;     /* Light Shimmer Gold */
+  --color-gold-dark: #997300;      /* Dark Bronze Gold */
+  --color-bg-base: #f9f6f0;        /* Ivory Cream Warm */
+  --color-bg-card: rgba(255, 255, 255, 0.88);
+  --color-text-main: #232b2b;      /* Charcoal text */
+  --color-text-muted: #5e6d65;     /* Muted sage gray */
+  --color-accent-hadir: #15803d;   /* Emerald check */
+  --color-accent-tidak: #b91c1c;   /* Crimson red */
+  --color-accent-ragu: #b45309;    /* Warm amber */
+  --color-border-gold: rgba(197, 155, 39, 0.35);
+
+  --font-heading: 'Cinzel', 'Playfair Display', serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(30, 57, 42, 0.08);
+  --shadow-lg: 0 16px 40px rgba(30, 57, 42, 0.14);
+  --shadow-glow: 0 0 20px rgba(197, 155, 39, 0.4);
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  --transition-fast: 0.25s ease;
+  --transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. GLOBAL RESET & BASE STYLES
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-main);
+  background-color: #ede7dc;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body.no-scroll {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   3. DESKTOP & MOBILE WRAPPER ARCHITECTURE (MOBILE-FIRST)
+   -------------------------------------------------------------------------- */
+.main-layout {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+  background: radial-gradient(circle at 10% 20%, #e8e0d1 0%, #ded5c2 90%);
+}
+
+/* Banner dekorasi di layar desktop (> 1024px) */
+.desktop-side-banner {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .desktop-side-banner {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(30, 57, 42, 0.95), rgba(44, 79, 59, 0.92)), url('assets/images/hero-bg.jpg') center/cover no-repeat;
+    color: #fff;
+    text-align: center;
+  }
+
+  .side-banner-content {
+    max-width: 440px;
+    padding: 2rem;
+    border: 1px solid var(--color-border-gold);
+    border-radius: var(--radius-lg);
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
+  }
+
+  .banner-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-gold-light);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--radius-full);
+    margin-bottom: 1.5rem;
+  }
+
+  .side-banner-content h2 {
+    font-family: var(--font-script);
+    font-size: 4rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  .banner-quote {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .banner-date {
+    font-family: var(--font-heading);
+    letter-spacing: 6px;
+    font-size: 1.25rem;
+    color: var(--color-gold-light);
+  }
+}
+
+/* Container utama undangan berformat Mobile-First (Max 480px) */
+.invitation-container {
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--color-bg-base);
+  min-height: 100vh;
+  position: relative;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem 1rem 3rem 1rem;
+  background-image: radial-gradient(rgba(197, 155, 39, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@media (min-width: 480px) {
+  .invitation-container {
+    padding: 2rem 1.5rem 4rem 1.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. FITUR 1: COVER / HERO SAMPUL UNDANGAN (FULLSCREEN OVERLAY)
+   -------------------------------------------------------------------------- */
+.hero-cover {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('assets/images/hero-bg.jpg') center/cover no-repeat;
+  transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+  overflow: hidden;
+}
+
+.hero-cover.opened {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(30, 57, 42, 0.85) 0%, rgba(20, 38, 28, 0.92) 100%);
+  backdrop-filter: blur(2px);
+}
+
+.hero-cover-content {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(243, 229, 171, 0.35);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  animation: fadeInDown 1.2s ease both;
+}
+
+.floral-ornament {
+  color: var(--color-gold-light);
+  opacity: 0.8;
+  margin: 0.5rem auto;
+  max-width: 140px;
+}
+
+.ornament-svg {
+  width: 100%;
+  height: 18px;
+}
+
+.hero-subtitle {
+  font-family: var(--font-heading);
+  letter-spacing: 4px;
+  font-size: 0.8rem;
+  color: var(--color-gold-light);
+  margin-bottom: 0.5rem;
+}
+
+.hero-title {
+  font-family: var(--font-script);
+  font-size: clamp(3rem, 10vw, 4.2rem);
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.hero-date {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.guest-card {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px dashed rgba(243, 229, 171, 0.5);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.guest-label {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.guest-name-wrapper {
+  padding: 0.35rem 0.75rem;
+  margin-bottom: 0.3rem;
+}
+
+.guest-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 5vw, 1.8rem);
+  font-weight: 700;
+  color: var(--color-gold-light);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  word-break: break-word;
+}
+
+.guest-note {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   5. TOMBOL & INTERAKSI (BUTTONS)
+   -------------------------------------------------------------------------- */
+.btn-primary, .btn-secondary, .btn-outline, .btn-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-fast);
+  text-align: center;
+  user-select: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #d4af37 100%);
+  color: #1a1a1a;
+  box-shadow: 0 6px 20px rgba(197, 155, 39, 0.35);
+}
+
+.btn-primary:hover, .btn-primary:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(197, 155, 39, 0.5);
+  background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 100%);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.pulse-btn {
+  animation: buttonPulse 2.2s infinite;
+}
+
+@keyframes buttonPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(212, 175, 55, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+}
+
+.btn-secondary {
+  background: var(--color-primary);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary-light);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   6. FITUR 6: FLOATING MUSIC TOGGLE BUTTON
+   -------------------------------------------------------------------------- */
+.floating-music-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 1000;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  border: 2px solid var(--color-secondary);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.floating-music-btn:hover {
+  transform: scale(1.08);
+}
+
+.music-disc {
+  color: var(--color-gold-light);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.music-disc.playing {
+  animation: rotateDisc 4s linear infinite;
+}
+
+.music-status-icon {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: #1a1a1a;
+  font-size: 0.55rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fff;
+}
+
+@keyframes rotateDisc {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   7. CARD & SECTION COMMON STYLES
+   -------------------------------------------------------------------------- */
+.section {
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.card-glass {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.25rem;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(8px);
+}
+
+.section-heading {
+  margin-bottom: 1.75rem;
+}
+
+.sub-heading {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 0.4rem;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 6vw, 2.3rem);
+  color: var(--color-primary);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0.75rem 0 1rem;
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+}
+
+.gold-divider::before, .gold-divider::after {
+  content: "";
+  height: 1px;
+  width: 50px;
+  background: linear-gradient(to right, transparent, var(--color-secondary), transparent);
+}
+
+.section-desc {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   8. INTRO & QURAN SECTION
+   -------------------------------------------------------------------------- */
+.badge-pill {
+  display: inline-block;
+  padding: 4px 14px;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: rgba(197, 155, 39, 0.18);
+  border-radius: var(--radius-full);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.couple-display-title {
+  font-family: var(--font-script);
+  font-size: clamp(2.8rem, 8vw, 3.6rem);
+  color: var(--color-primary);
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+}
+
+.couple-main-photo-frame {
+  width: 220px;
+  height: 280px;
+  margin: 0 auto 1.25rem;
+  border-radius: 120px 120px 20px 20px;
+  overflow: hidden;
+  border: 4px solid #fff;
+  box-shadow: 0 12px 30px rgba(30, 57, 42, 0.18);
+  position: relative;
+}
+
+.couple-main-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.couple-main-photo-frame:hover .couple-main-photo {
+  transform: scale(1.05);
+}
+
+.intro-date {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.bismillah-svg {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.svg-bismillah {
+  width: 100%;
+  max-width: 280px;
+  height: 45px;
+}
+
+.quran-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.quran-surah {
+  font-size: 0.82rem;
+  color: var(--color-secondary);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   9. PROFIL MEMPELAI (GROOM & BRIDE)
+   -------------------------------------------------------------------------- */
+.couple-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.couple-profile-card {
+  width: 100%;
+  text-align: center;
+  padding: 2rem 1.25rem;
+}
+
+.profile-photo-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin: 0 auto 1.25rem;
+  padding: 4px;
+  border: 2px solid var(--color-secondary);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.profile-photo-circle img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-name {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.6rem;
+}
+
+.profile-parents {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  padding: 6px 14px;
+  background: rgba(30, 57, 42, 0.08);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.social-link:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.couple-ampersand {
+  font-family: var(--font-script);
+  font-size: 3.5rem;
+  color: var(--color-secondary);
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   10. FITUR 2: INFORMASI ACARA & COUNTDOWN TIMER
+   -------------------------------------------------------------------------- */
+.countdown-container {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, rgba(30, 57, 42, 0.96), rgba(44, 79, 59, 0.95));
+  color: #ffffff;
+  border: 1px solid var(--color-secondary);
+}
+
+.countdown-heading {
+  font-size: 0.88rem;
+  color: var(--color-gold-light);
+  margin-bottom: 1.25rem;
+  letter-spacing: 1px;
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.countdown-box {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(243, 229, 171, 0.3);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.25rem;
+  backdrop-filter: blur(4px);
+}
+
+.countdown-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-weight: 700;
+  color: var(--color-gold-light);
+  line-height: 1.1;
+}
+
+.countdown-label {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 4px;
+}
+
+.calendar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.calendar-actions .btn-outline {
+  color: #fff;
+  border-color: var(--color-gold-light);
+}
+
+.calendar-actions .btn-outline:hover {
+  background: var(--color-gold-light);
+  color: var(--color-primary);
+}
+
+.event-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.event-card {
+  position: relative;
+  overflow: hidden;
+  padding-top: 2rem;
+}
+
+.event-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-primary);
+  color: #fff;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px;
+}
+
+.event-badge.highlight {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+}
+
+.event-time-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.event-day-box {
+  text-align: center;
+  border-bottom: 2px solid var(--color-secondary);
+  padding-bottom: 0.5rem;
+}
+
+.event-day-box .day-name {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.event-day-box .day-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.event-day-box .day-month {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  color: var(--color-text-muted);
+}
+
+.event-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 0.85rem;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.event-detail-item i {
+  color: var(--color-secondary);
+  font-size: 1.1rem;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.event-detail-item strong {
+  display: block;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+}
+
+.event-detail-item p {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.event-tag {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: var(--color-secondary);
+  font-style: italic;
+  border-top: 1px dashed var(--color-border-gold);
+  padding-top: 0.6rem;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   11. FITUR 3: NAVIGASI LOKASI (GOOGLE MAPS)
+   -------------------------------------------------------------------------- */
+.map-responsive-container {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border-gold);
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.map-responsive-container iframe {
+  display: block;
+  width: 100%;
+}
+
+.map-button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.map-notice {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-top: 0.4rem;
+}
+
+/* --------------------------------------------------------------------------
+   12. FITUR 4: GALERI FOTO & LIGHTBOX
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.gallery-item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 2px solid #fff;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.gallery-item:nth-child(3), .gallery-item:nth-child(6) {
+  aspect-ratio: 16 / 10;
+  grid-column: span 2;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 57, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: opacity var(--transition-fast);
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.lightbox-modal.active {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#lightbox-img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(243, 229, 171, 0.3);
+}
+
+.lightbox-caption {
+  color: #fff;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.lightbox-counter {
+  color: var(--color-gold-light);
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color var(--transition-fast);
+  z-index: 2;
+}
+
+.lightbox-close-btn:hover {
+  color: var(--color-secondary);
+}
+
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  z-index: 2;
+}
+
+.lightbox-nav-btn:hover {
+  background: var(--color-secondary);
+  color: #1a1a1a;
+}
+
+.lightbox-nav-btn.prev {
+  left: 16px;
+}
+
+.lightbox-nav-btn.next {
+  right: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   13. FITUR 3: AMPLOP DIGITAL (DIGITAL GIFT) & TOAST
+   -------------------------------------------------------------------------- */
+.gift-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.bank-card {
+  background: linear-gradient(135deg, #ffffff 0%, #faf7f2 100%);
+  border: 1.5px solid var(--color-border-gold);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.bank-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--color-border-gold);
+}
+
+.bank-name {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+  color: var(--color-primary);
+}
+
+.bank-icon {
+  color: var(--color-secondary);
+  font-size: 1.4rem;
+}
+
+.account-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.account-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 2px;
+  margin-bottom: 0.25rem;
+}
+
+.account-number.text-small {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.5;
+  color: var(--color-text-main);
+  margin-top: 4px;
+}
+
+.account-holder {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.btn-copy {
+  width: 100%;
+  background: rgba(30, 57, 42, 0.08);
+  color: var(--color-primary);
+  border: 1px solid rgba(30, 57, 42, 0.2);
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+}
+
+.btn-copy:hover {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.btn-copy.copied {
+  background: var(--color-accent-hadir);
+  color: #fff;
+  border-color: var(--color-accent-hadir);
+}
+
+/* Toast Notification */
+.toast-container {
+  position: fixed;
+  bottom: 84px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  z-index: 10001;
+  background: rgba(30, 57, 42, 0.95);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-secondary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.toast-container.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.toast-icon {
+  color: var(--color-gold-light);
+  font-size: 1.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   14. FITUR 5: RSVP & BUKU TAMU PERSISTEN (LOCALSTORAGE)
+   -------------------------------------------------------------------------- */
+.rsvp-form-card {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.form-group label i {
+  color: var(--color-secondary);
+  margin-right: 4px;
+}
+
+.required {
+  color: var(--color-accent-tidak);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid var(--color-border-gold);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-text-main);
+  font-size: 0.9rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(30, 57, 42, 0.15);
+}
+
+/* Radio button kehadiran */
+.attendance-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.attendance-radio input {
+  display: none;
+}
+
+.radio-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0.65rem 0.25rem;
+  border: 1.5px solid var(--color-border-gold);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.attendance-radio input:checked + .radio-badge.badge-hadir {
+  background: var(--color-accent-hadir);
+  border-color: var(--color-accent-hadir);
+  color: #fff;
+}
+
+.attendance-radio input:checked + .radio-badge.badge-tidak {
+  background: var(--color-accent-tidak);
+  border-color: var(--color-accent-tidak);
+  color: #fff;
+}
+
+.attendance-radio input:checked + .radio-badge.badge-ragu {
+  background: var(--color-accent-ragu);
+  border-color: var(--color-accent-ragu);
+  color: #fff;
+}
+
+/* Guestbook List */
+.guestbook-container {
+  padding: 1.5rem 1rem;
+}
+
+.guestbook-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border-gold);
+}
+
+.guestbook-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guestbook-stats {
+  display: flex;
+  gap: 6px;
+}
+
+.stats-pill {
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  background: rgba(30, 57, 42, 0.1);
+  color: var(--color-primary);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+
+.stats-pill.attend {
+  background: rgba(21, 128, 61, 0.15);
+  color: var(--color-accent-hadir);
+}
+
+.wishes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Custom Scrollbar */
+.wishes-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.wishes-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+}
+
+.wishes-list::-webkit-scrollbar-thumb {
+  background: var(--color-border-gold);
+  border-radius: 10px;
+}
+
+.wish-item {
+  background: #ffffff;
+  border: 1px solid rgba(197, 155, 39, 0.25);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  animation: fadeIn 0.5s ease both;
+}
+
+.wish-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.wish-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wish-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  color: var(--color-gold-light);
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.wish-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+}
+
+.wish-status-badge {
+  font-size: 0.68rem;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+
+.wish-status-badge.hadir {
+  background: rgba(21, 128, 61, 0.12);
+  color: var(--color-accent-hadir);
+}
+
+.wish-status-badge.tidak {
+  background: rgba(185, 28, 28, 0.12);
+  color: var(--color-accent-tidak);
+}
+
+.wish-status-badge.ragu {
+  background: rgba(180, 83, 9, 0.12);
+  color: var(--color-accent-ragu);
+}
+
+.wish-message {
+  font-size: 0.85rem;
+  color: var(--color-text-main);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+  word-break: break-word;
+}
+
+.wish-footer {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   15. CLOSING & FOOTER
+   -------------------------------------------------------------------------- */
+.closing-text {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.closing-salam {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+.closing-family p {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.closing-couple-name {
+  font-family: var(--font-script);
+  font-size: 2.8rem;
+  color: var(--color-primary);
+  line-height: 1.2;
+  margin: 0.25rem 0;
+}
+
+.family-names {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+.invitation-footer {
+  padding-top: 2rem;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.sub-footer {
+  font-size: 0.72rem;
+  color: #8c9b93;
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   16. SCROLL ANIMATION & KEYFRAMES
+   -------------------------------------------------------------------------- */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
