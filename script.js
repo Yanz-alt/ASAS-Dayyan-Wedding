@@ -35,24 +35,77 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /**
-   * Membaca query parameter ?to= dari URL
-   * Contoh: index.html?to=Budi+Santoso+Sekeluarga
+   * Konfigurasi Supabase untuk integrasi Database Tamu Undangan
+   */
+  const SUPABASE_CONFIG = {
+    url: 'https://rxtcbmuhogublhqhielx.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4dGNibXVob2d1YmxocWhpZWx4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUzODQwODcsImV4cCI6MjExMDk2MDA4N30.FhMNhQX-xYbr1XKPwQCf0VNrs9cmGQzx0ZoO5KLA6xA'
+  };
+
+  /**
+   * Menampilkan nama tamu dan memperbarui DOM
+   */
+  function applyGuestName(name, subtitle = '') {
+    const cleanName = sanitizeHTML(name);
+    if (guestNameElement) {
+      guestNameElement.textContent = cleanName;
+      if (subtitle) {
+        const guestNote = document.querySelector('.guest-note');
+        if (guestNote) guestNote.textContent = subtitle;
+      }
+    }
+    if (rsvpNameInput) {
+      rsvpNameInput.value = cleanName;
+    }
+    document.title = `The Wedding of Dayyan & Haimiya - Untuk ${cleanName}`;
+  }
+
+  /**
+   * Membaca nama tamu secara dinamis:
+   * 1. Berdasarkan parameter ?id= (Query ke Database Supabase)
+   * 2. Berdasarkan parameter ?to= (Query string langsung)
    */
   function initDynamicGuestName() {
     const urlParams = new URLSearchParams(window.location.search);
+    const guestId = urlParams.get('id');
     const guestParam = urlParams.get('to') || urlParams.get('n') || urlParams.get('guest');
 
+    // Prioritas 1: Ambil data dinamis dari Supabase jika ada ?id= (misal: ?id=1)
+    if (guestId && !isNaN(guestId)) {
+      if (guestNameElement) guestNameElement.textContent = 'Memuat Data Tamu...';
+
+      fetch(`${SUPABASE_CONFIG.url}/rest/v1/tamu_undangan?id=eq.${guestId}&select=nama_tamu,instansi,kategori`, {
+        headers: {
+          'apikey': SUPABASE_CONFIG.anonKey,
+          'Authorization': `Bearer ${SUPABASE_CONFIG.anonKey}`
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          const guest = data[0];
+          const subtitle = guest.instansi ? `Spesial Mengundang dari ${guest.instansi}` : 'Spesial Mengundang Anda Untuk Hadir';
+          applyGuestName(guest.nama_tamu, subtitle);
+        } else if (guestParam && guestParam.trim() !== '') {
+          applyGuestName(guestParam.trim());
+        } else {
+          applyGuestName('Tamu Undangan');
+        }
+      })
+      .catch(err => {
+        console.warn('Gagal memuat data dari Supabase, beralih ke parameter lokal:', err);
+        if (guestParam && guestParam.trim() !== '') {
+          applyGuestName(guestParam.trim());
+        } else {
+          applyGuestName('Tamu Undangan');
+        }
+      });
+      return;
+    }
+
+    // Prioritas 2: Baca parameter teks langsung (?to=Nama+Tamu)
     if (guestParam && guestParam.trim() !== '') {
-      const cleanGuestName = sanitizeHTML(guestParam.trim());
-      if (guestNameElement) {
-        guestNameElement.textContent = cleanGuestName;
-      }
-      // Otomatis isikan ke form RSVP agar tamu tidak perlu mengetik ulang nama
-      if (rsvpNameInput) {
-        rsvpNameInput.value = cleanGuestName;
-      }
-      // Perbarui judul halaman agar lebih personal
-      document.title = `The Wedding of Dayyan & Haimiya - Untuk ${cleanGuestName}`;
+      applyGuestName(guestParam.trim());
     } else {
       if (guestNameElement) {
         guestNameElement.textContent = 'Tamu Undangan';

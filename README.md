@@ -61,8 +61,16 @@ Buka file `index.html` langsung di browser, atau jalankan web server lokal seder
   npx serve .
   ```
 
-### 2. Menguji Parameter Nama Tamu Dinamis
-Buka URL dengan parameter `?to=` di browser:
+### 2. Menguji Parameter Nama Tamu Dinamis (URL & Supabase Database)
+Website mendukung dua metode pemuatan nama tamu dinamis sesuai rubrik ASAS:
+
+**Metode A: Berdasarkan ID Tamu di Database Supabase (`?id=`)**
+- `http://localhost:3000/?id=1` -> Mengambil data *Dr. Rina Kusumawati, M.Pd.* (Universitas Indonesia)
+- `http://localhost:3000/?id=2` -> Mengambil data *Budi Santoso, S.Kom.* (PT Telkom Indonesia)
+- `http://localhost:3000/?id=3` -> Mengambil data *Siti Rahmawati* (Institut Teknologi Bandung)
+- `http://localhost:3000/?id=4` -> Mengambil data *Ahmad Fauzi* (Alumni Angkatan 2022)
+
+**Metode B: Berdasarkan Teks URL Langsung (`?to=`)**
 - `http://localhost:3000/?to=Bapak+Budi+Santoso`
 - `http://localhost:3000/?to=Keluarga+Besar+RPL+2`
 - `http://localhost:3000/?to=Ibu+Siti+Rahmawati`
