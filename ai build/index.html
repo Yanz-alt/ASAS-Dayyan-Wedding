@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="Undangan Pernikahan Digital Dayyan & Amanda - Sabtu, 12 Desember 2026">
+  <meta name="theme-color" content="#2D4A3E">
+
+  <!-- Open Graph / Meta Sosial -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Wedding of Dayyan & Amanda">
+  <meta property="og:description" content="Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami.">
+  <meta property="og:image" content="assets/images/couple.jpg">
+
+  <title>The Wedding of Dayyan & Amanda</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="no-scroll">
+
+  <!-- ==========================================
+       AUDIO LATAR BELAKANG (BACKGROUND MUSIC)
+  =========================================== -->
+  <audio id="bg-music" src="assets/audio/wedding-song.mp3" preload="auto" loop></audio>
+
+  <!-- ==========================================
+       FITUR 6: FLOATING MUSIC TOGGLE BUTTON
+  =========================================== -->
+  <button id="music-toggle" class="floating-music-btn" aria-label="Toggle Musik Latar" title="Putar / Hentikan Musik">
+    <div class="music-disc" id="music-disc">
+      <i class="fa-solid fa-compact-disc disc-icon"></i>
+    </div>
+    <span class="music-status-icon"><i class="fa-solid fa-play" id="music-icon-state"></i></span>
+  </button>
+
+  <!-- ==========================================
+       TOAST NOTIFICATION (COPY CLIPBOARD FEEDBACK)
+  =========================================== -->
+  <div id="toast" class="toast-container" role="alert" aria-live="polite">
+    <div class="toast-content">
+      <i class="fa-solid fa-circle-check toast-icon"></i>
+      <span id="toast-message">Nomor rekening berhasil disalin!</span>
+    </div>
+  </div>
+
+  <!-- ===================================================
+       FITUR 1: COVER / HERO SAMPUL UNDANGAN (FULLSCREEN)
+  ==================================================== -->
+  <section id="hero-cover" class="hero-cover">
+    <div class="hero-cover-overlay"></div>
+    <div class="hero-cover-content">
+      <div class="floral-ornament top-ornament">
+        <svg viewBox="0 0 100 20" class="ornament-svg">
+          <path d="M0,10 Q25,0 50,10 Q75,20 100,10" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <circle cx="50" cy="10" r="3" fill="currentColor" />
+        </svg>
+      </div>
+
+      <p class="hero-subtitle">WALIMATUL 'URS</p>
+      <h1 class="hero-title">Dayyan &amp; Amanda</h1>
+      <p class="hero-date"><i class="fa-regular fa-calendar-days"></i> Sabtu, 12 Desember 2026</p>
+
+      <div class="guest-card">
+        <p class="guest-label">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+        <!-- FITUR 1: NAMA TAMU DINAMIS VIA URL PARAMETER (?to=Nama+Tamu) -->
+        <div class="guest-name-wrapper">
+          <h2 id="guest-name" class="guest-name">Tamu Undangan</h2>
+        </div>
+        <p class="guest-note">Spesial Mengundang Anda Untuk Hadir</p>
+      </div>
+
+      <button id="btn-open-invitation" class="btn-primary pulse-btn">
+        <i class="fa-solid fa-envelope-open-text"></i>
+        <span>Buka Undangan</span>
+      </button>
+
+      <div class="floral-ornament bottom-ornament">
+        <svg viewBox="0 0 100 20" class="ornament-svg">
+          <path d="M0,10 Q25,20 50,10 Q75,0 100,10" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <circle cx="50" cy="10" r="3" fill="currentColor" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       KONTEN UTAMA UNDANGAN (MOBILE-FIRST WRAPPER)
+  =========================================== -->
+  <div class="main-layout">
+    
+    <!-- DESKTOP BACKGROUND DECORATION -->
+    <aside class="desktop-side-banner" aria-hidden="true">
+      <div class="side-banner-content">
+        <span class="banner-badge">Official Invitation</span>
+        <h2>Dayyan &amp; Amanda</h2>
+        <p class="banner-quote">"Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri..."</p>
+        <div class="banner-date">12 . 12 . 2026</div>
+      </div>
+    </aside>
+
+    <main class="invitation-container" id="invitation-app">
+
+      <!-- ==========================================
+           HEADER INTRO SECTION
+      =========================================== -->
+      <section class="section intro-section animate-on-scroll" id="intro">
+        <div class="card-glass intro-card text-center">
+          <div class="badge-pill">The Wedding Celebration</div>
+          <h2 class="couple-display-title">Dayyan &amp; Amanda</h2>
+          <div class="couple-main-photo-frame">
+            <img src="assets/images/couple.jpg" alt="Dayyan dan Amanda" class="couple-main-photo" loading="lazy">
+          </div>
+          <p class="intro-date">Sabtu, 12 Desember 2026 &bull; Bandung, Jawa Barat</p>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           AYAT SUCI / KUTIPAN ROMANTIS SECTION
+      =========================================== -->
+      <section class="section quran-section animate-on-scroll" id="quote">
+        <div class="card-glass text-center">
+          <div class="bismillah-svg">
+            <svg viewBox="0 0 400 80" class="svg-bismillah">
+              <text x="50%" y="55%" text-anchor="middle" font-family="'Cinzel', serif" font-size="28" fill="currentColor">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</text>
+            </svg>
+          </div>
+          <blockquote class="quran-quote">
+            "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."
+          </blockquote>
+          <cite class="quran-surah">&mdash; QS. Ar-Rum: 21 &mdash;</cite>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           PROFIL MEMPELAI (THE COUPLE)
+      =========================================== -->
+      <section class="section couple-section animate-on-scroll" id="couple">
+        <div class="section-heading text-center">
+          <span class="sub-heading">Mempelai Berbahagia</span>
+          <h2 class="section-title">Groom &amp; Bride</h2>
+          <div class="gold-divider"><span>❤</span></div>
+          <p class="section-desc">Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan kami:</p>
+        </div>
+
+        <div class="couple-cards-wrapper">
+          <!-- MEMPELAI PRIA -->
+          <div class="card-glass couple-profile-card animate-on-scroll">
+            <div class="profile-photo-circle">
+              <img src="assets/images/groom.jpg" alt="Muhammad Dayyan Pratama" loading="lazy">
+            </div>
+            <h3 class="profile-name">Muhammad Dayyan Pratama, S.Kom</h3>
+            <p class="profile-parents">
+              Putra sulung dari:<br>
+              <strong>Bpk. Bambang Hermawan</strong> &amp;<br>
+              <strong>Ibu Sri Wahyuni</strong>
+            </p>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram Groom">
+              <i class="fa-brands fa-instagram"></i> @dayyanpratama
+            </a>
+          </div>
+
+          <!-- DIVIDER AMANDAND -->
+          <div class="couple-ampersand">&amp;</div>
+
+          <!-- MEMPELAI WANITA -->
+          <div class="card-glass couple-profile-card animate-on-scroll">
+            <div class="profile-photo-circle">
+              <img src="assets/images/bride.jpg" alt="Amanda Zahra Putri" loading="lazy">
+            </div>
+            <h3 class="profile-name">Amanda Zahra Putri, S.Ds</h3>
+            <p class="profile-parents">
+              Putri kedua dari:<br>
+              <strong>Bpk. Irwan Santoso</strong> &amp;<br>
+              <strong>Ibu Maya Lestari</strong>
+            </p>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram Bride">
+              <i class="fa-brands fa-instagram"></i> @amandazahra
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           FITUR 2: INFORMASI ACARA & HITUNG MUNDUR (COUNTDOWN TIMER)
+      ================================================================ -->
+      <section class="section event-section animate-on-scroll" id="event">
+        <div class="section-heading text-center">
+          <span class="sub-heading">Save The Date</span>
+          <h2 class="section-title">Rangkaian Acara</h2>
+          <div class="gold-divider"><span>❖</span></div>
+          <p class="section-desc">Insya Allah acara pernikahan kami akan diselenggarakan pada:</p>
+        </div>
+
+        <!-- COUNTDOWN TIMER CONTAINER -->
+        <div class="countdown-container card-glass animate-on-scroll">
+          <p class="countdown-heading"><i class="fa-regular fa-clock"></i> Menghitung Hari Menuju Hari Bahagia</p>
+          <div class="countdown-grid" id="countdown-timer" data-target-date="2026-12-12T08:00:00+07:00">
+            <div class="countdown-box">
+              <span class="countdown-number" id="days">00</span>
+              <span class="countdown-label">Hari</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-number" id="hours">00</span>
+              <span class="countdown-label">Jam</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-number" id="minutes">00</span>
+              <span class="countdown-label">Menit</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-number" id="seconds">00</span>
+              <span class="countdown-label">Detik</span>
+            </div>
+          </div>
+          <!-- BUTTON SIMPAN KE KALENDER -->
+          <div class="calendar-actions">
+            <a id="btn-google-calendar" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Dayyan+%26+Amanda&dates=20261212T010000Z/20261212T080000Z&details=Undangan+Pernikahan+Dayyan+dan+Amanda.+Bertempat+di+Grand+Ballroom+Grand+Pacific+Hotel,+Bandung.&location=Grand+Pacific+Hotel,+Bandung" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+              <i class="fa-brands fa-google"></i> Simpan ke Google Calendar
+            </a>
+            <button id="btn-ics-calendar" class="btn-outline">
+              <i class="fa-regular fa-calendar-plus"></i> Unduh File Kalender (.ics)
+            </button>
+          </div>
+        </div>
+
+        <!-- EVENT CARDS (AKAD & RESEPSI) -->
+        <div class="event-cards-grid">
+          <!-- AKAD NIKAH -->
+          <div class="card-glass event-card animate-on-scroll">
+            <div class="event-badge"><i class="fa-solid fa-ring"></i> Akad Nikah</div>
+            <div class="event-time-row">
+              <div class="event-day-box">
+                <span class="day-name">SABTU</span>
+                <span class="day-number">12</span>
+                <span class="day-month">DESEMBER 2026</span>
+              </div>
+            </div>
+            <div class="event-detail-item">
+              <i class="fa-regular fa-clock"></i>
+              <p>Pukul 08.00 - 10.00 WIB</p>
+            </div>
+            <div class="event-detail-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <strong>Masjid Agung Al-Ukhuwah</strong>
+                <p>Jl. Wastukencana No. 27, Babakan Ciamis, Sumur Bandung, Kota Bandung</p>
+              </div>
+            </div>
+            <div class="event-tag">Khusus Keluarga &amp; Tamu Terdekat</div>
+          </div>
+
+          <!-- RESEPSI PERNIKAHAN -->
+          <div class="card-glass event-card animate-on-scroll">
+            <div class="event-badge highlight"><i class="fa-solid fa-champagne-glasses"></i> Resepsi Pernikahan</div>
+            <div class="event-time-row">
+              <div class="event-day-box">
+                <span class="day-name">SABTU</span>
+                <span class="day-number">12</span>
+                <span class="day-month">DESEMBER 2026</span>
+              </div>
+            </div>
+            <div class="event-detail-item">
+              <i class="fa-regular fa-clock"></i>
+              <p>Pukul 11.00 - 15.00 WIB</p>
+            </div>
+            <div class="event-detail-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <strong>Grand Ballroom Grand Pacific Hotel</strong>
+                <p>Jl. Pasir Kaliki No. 100, Pasir Kaliki, Cicendo, Kota Bandung</p>
+              </div>
+            </div>
+            <div class="event-tag">Sesi Terbuka Untuk Seluruh Tamu Undangan</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           FITUR 3: NAVIGASI LOKASI GOOGLE MAPS
+      ================================================================ -->
+      <section class="section maps-section animate-on-scroll" id="location">
+        <div class="section-heading text-center">
+          <span class="sub-heading">Denah &amp; Arah</span>
+          <h2 class="section-title">Lokasi Acara</h2>
+          <div class="gold-divider"><span>📍</span></div>
+          <p class="section-desc">Grand Pacific Hotel Bandung</p>
+        </div>
+
+        <div class="card-glass map-wrapper animate-on-scroll">
+          <div class="map-responsive-container">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.898863695277!2d107.59918737499645!3d-6.902700593096606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e64177b94963%3A0xe543e573a65499bc!2sGrand%20Pacific%20Hotel%20Bandung!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+              width="100%" 
+              height="300" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Peta Lokasi Pernikahan Dayyan & Amanda">
+            </iframe>
+          </div>
+          <div class="map-button-group text-center">
+            <a href="https://maps.google.com/?q=Grand+Pacific+Hotel+Bandung" target="_blank" rel="noopener noreferrer" class="btn-primary">
+              <i class="fa-solid fa-map-location-dot"></i> Buka Google Maps Langsung
+            </a>
+            <p class="map-notice"><i class="fa-solid fa-circle-info"></i> Tersedia area parkir luas dan layanan valet di lokasi gedung.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           FITUR 4: GALERI FOTO & SCROLL ANIMATION + LIGHTBOX
+      ================================================================ -->
+      <section class="section gallery-section animate-on-scroll" id="gallery">
+        <div class="section-heading text-center">
+          <span class="sub-heading">Momen Bahagia Kami</span>
+          <h2 class="section-title">Galeri Foto</h2>
+          <div class="gold-divider"><span>📸</span></div>
+          <p class="section-desc">Koleksi potret perjalanan kasih kami berdua</p>
+        </div>
+
+        <!-- GALLERY GRID (MINIMAL 4 FOTO, KITA SEDIAKAN 6 FOTO ESTETIK) -->
+        <div class="gallery-grid">
+          <div class="gallery-item animate-on-scroll" data-index="0" data-caption="Pertemuan awal yang penuh makna">
+            <img src="assets/images/gallery1.jpg" alt="Galeri Foto 1" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+          <div class="gallery-item animate-on-scroll" data-index="1" data-caption="Tawa ceria bersama di bawah langit senja">
+            <img src="assets/images/gallery2.jpg" alt="Galeri Foto 2" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+          <div class="gallery-item animate-on-scroll" data-index="2" data-caption="Menjalin komitmen menuju masa depan bersama">
+            <img src="assets/images/gallery3.jpg" alt="Galeri Foto 3" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+          <div class="gallery-item animate-on-scroll" data-index="3" data-caption="Hari bahagia di pelataran kenangan indah">
+            <img src="assets/images/gallery4.jpg" alt="Galeri Foto 4" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+          <div class="gallery-item animate-on-scroll" data-index="4" data-caption="Saling melengkapi dalam setiap langkah cita">
+            <img src="assets/images/gallery5.jpg" alt="Galeri Foto 5" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+          <div class="gallery-item animate-on-scroll" data-index="5" data-caption="Menuju ikrar suci pernikahan seumur hidup">
+            <img src="assets/images/gallery6.jpg" alt="Galeri Foto 6" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIGHTBOX MODAL POPUP -->
+      <div id="lightbox" class="lightbox-modal" aria-hidden="true" role="dialog">
+        <button id="lightbox-close" class="lightbox-close-btn" aria-label="Tutup Galeri">&times;</button>
+        <button id="lightbox-prev" class="lightbox-nav-btn prev" aria-label="Foto Sebelumnya">&#10094;</button>
+        <button id="lightbox-next" class="lightbox-nav-btn next" aria-label="Foto Selanjutnya">&#10095;</button>
+        <div class="lightbox-content">
+          <img id="lightbox-img" src="" alt="Pratinjau Foto Galeri">
+          <p id="lightbox-caption" class="lightbox-caption"></p>
+          <div id="lightbox-counter" class="lightbox-counter">1 / 6</div>
+        </div>
+      </div>
+
+      <!-- ===============================================================
+           FITUR 3: AMPLOP DIGITAL / TANDA KASIH (COPY TO CLIPBOARD)
+      ================================================================ -->
+      <section class="section gift-section animate-on-scroll" id="gift">
+        <div class="section-heading text-center">
+          <span class="sub-heading">Tanda Kasih</span>
+          <h2 class="section-title">Amplop Digital</h2>
+          <div class="gold-divider"><span>🎁</span></div>
+          <p class="section-desc">Doa restu Anda merupakan karunia terindah bagi kami. Namun jika Anda ingin memberikan hadiah, kami menyediakan amplop digital di bawah ini:</p>
+        </div>
+
+        <div class="gift-cards-container">
+          <!-- REKENING BANK BCA -->
+          <div class="card-glass bank-card animate-on-scroll">
+            <div class="bank-header">
+              <span class="bank-name">BANK BCA</span>
+              <i class="fa-solid fa-credit-card bank-icon"></i>
+            </div>
+            <div class="bank-body">
+              <div class="account-number-wrapper">
+                <span class="account-label">Nomor Rekening:</span>
+                <span class="account-number" id="acc-bca">7720183921</span>
+              </div>
+              <p class="account-holder">a.n. Muhammad Dayyan Pratama</p>
+              <button class="btn-copy" data-clipboard-target="#acc-bca" data-label="Rekening BCA">
+                <i class="fa-regular fa-copy"></i> Salin Nomor Rekening
+              </button>
+            </div>
+          </div>
+
+          <!-- REKENING BANK MANDIRI -->
+          <div class="card-glass bank-card animate-on-scroll">
+            <div class="bank-header">
+              <span class="bank-name">BANK MANDIRI</span>
+              <i class="fa-solid fa-credit-card bank-icon"></i>
+            </div>
+            <div class="bank-body">
+              <div class="account-number-wrapper">
+                <span class="account-label">Nomor Rekening:</span>
+                <span class="account-number" id="acc-mandiri">1310029384756</span>
+              </div>
+              <p class="account-holder">a.n. Amanda Zahra Putri</p>
+              <button class="btn-copy" data-clipboard-target="#acc-mandiri" data-label="Rekening Mandiri">
+                <i class="fa-regular fa-copy"></i> Salin Nomor Rekening
+              </button>
+            </div>
+          </div>
+
+          <!-- KIRIM KADO FISIK -->
+          <div class="card-glass bank-card animate-on-scroll">
+            <div class="bank-header">
+              <span class="bank-name">KIRIM KADO FISIK</span>
+              <i class="fa-solid fa-box-open bank-icon"></i>
+            </div>
+            <div class="bank-body">
+              <div class="account-number-wrapper">
+                <span class="account-label">Alamat Penerima:</span>
+                <p class="account-number text-small" id="acc-address">Jl. Flamboyan Regency No. 24, Sukajadi, Kota Bandung, Jawa Barat 40161 (Penerima: Dayyan & Amanda / 0812-3456-7890)</p>
+              </div>
+              <button class="btn-copy" data-clipboard-target="#acc-address" data-label="Alamat Kado">
+                <i class="fa-regular fa-copy"></i> Salin Alamat Pengiriman
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           FITUR 5: FORMULIR RSVP & BUKU TAMU PERSISTEN (LOCALSTORAGE)
+      ================================================================ -->
+      <section class="section rsvp-section animate-on-scroll" id="rsvp">
+        <div class="section-heading text-center">
+          <span class="sub-heading">Konfirmasi &amp; Doa</span>
+          <h2 class="section-title">RSVP &amp; Buku Tamu</h2>
+          <div class="gold-divider"><span>✍</span></div>
+          <p class="section-desc">Mohon konfirmasi kehadiran Anda demi kenyamanan bersama</p>
+        </div>
+
+        <!-- FORM KONFIRMASI KEHADIRAN -->
+        <div class="card-glass rsvp-form-card animate-on-scroll">
+          <form id="rsvp-form" class="rsvp-form">
+            <div class="form-group">
+              <label for="rsvp-name"><i class="fa-solid fa-user"></i> Nama Tamu <span class="required">*</span></label>
+              <input type="text" id="rsvp-name" name="name" class="form-input" placeholder="Masukkan nama Anda..." required>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fa-solid fa-clipboard-check"></i> Konfirmasi Kehadiran <span class="required">*</span></label>
+              <div class="attendance-options">
+                <label class="attendance-radio">
+                  <input type="radio" name="attendance" value="Hadir" checked>
+                  <span class="radio-badge badge-hadir"><i class="fa-solid fa-check"></i> Hadir</span>
+                </label>
+                <label class="attendance-radio">
+                  <input type="radio" name="attendance" value="Tidak Hadir">
+                  <span class="radio-badge badge-tidak"><i class="fa-solid fa-xmark"></i> Tidak Hadir</span>
+                </label>
+                <label class="attendance-radio">
+                  <input type="radio" name="attendance" value="Masih Ragu">
+                  <span class="radio-badge badge-ragu"><i class="fa-solid fa-question"></i> Masih Ragu</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="rsvp-guests"><i class="fa-solid fa-users"></i> Jumlah Hadir</label>
+              <select id="rsvp-guests" name="guests" class="form-input">
+                <option value="1">1 Orang</option>
+                <option value="2">2 Orang</option>
+                <option value="3">3 Orang</option>
+                <option value="4">4 Orang atau lebih</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="rsvp-message"><i class="fa-solid fa-comment-dots"></i> Doa &amp; Ucapan Selamat <span class="required">*</span></label>
+              <textarea id="rsvp-message" name="message" class="form-input" rows="4" placeholder="Tuliskan ucapan dan doa terbaik Anda untuk kedua mempelai..." required></textarea>
+            </div>
+
+            <button type="submit" id="btn-submit-rsvp" class="btn-primary w-100">
+              <i class="fa-solid fa-paper-plane"></i> Kirim Konfirmasi &amp; Ucapan
+            </button>
+          </form>
+        </div>
+
+        <!-- BUKU TAMU / DAFTAR UCAPAN PERSISTEN -->
+        <div class="guestbook-container card-glass animate-on-scroll">
+          <div class="guestbook-header">
+            <h3><i class="fa-solid fa-book-open"></i> Buku Tamu &amp; Doa Restu</h3>
+            <div class="guestbook-stats">
+              <span id="total-wishes-badge" class="stats-pill"><i class="fa-solid fa-envelope"></i> 0 Ucapan</span>
+              <span id="total-attending-badge" class="stats-pill attend"><i class="fa-solid fa-user-check"></i> 0 Hadir</span>
+            </div>
+          </div>
+
+          <!-- LIST UCAPAN (DIMUAT DAN DIRENDER OLEH JAVASCRIPT) -->
+          <div id="wishes-list" class="wishes-list" role="feed" aria-live="polite">
+            <!-- Item ucapan akan di-inject lewat JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           PENUTUP & DOA KELUARGA
+      =========================================== -->
+      <section class="section closing-section animate-on-scroll text-center" id="closing">
+        <div class="card-glass">
+          <div class="floral-ornament">
+            <svg viewBox="0 0 100 20" class="ornament-svg">
+              <path d="M0,10 Q25,0 50,10 Q75,20 100,10" fill="none" stroke="currentColor" stroke-width="1.5" />
+              <circle cx="50" cy="10" r="3" fill="currentColor" />
+            </svg>
+          </div>
+          <p class="closing-text">
+            Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga, apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada kedua mempelai.
+          </p>
+          <p class="closing-salam">Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
+          <div class="closing-family">
+            <p>Kami yang berbahagia,</p>
+            <h3 class="closing-couple-name">Dayyan &amp; Amanda</h3>
+            <p class="family-names">Beserta Seluruh Keluarga Besar Kedua Mempelai</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           FOOTER / CREDITS
+      =========================================== -->
+      <footer class="invitation-footer text-center">
+        <p>&copy; 2026 The Wedding of Dayyan &amp; Amanda.</p>
+        <p class="sub-footer">Dibuat untuk Asesmen Sumatif Akhir Semester (ASAS) XI RPL 2</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script src="script.js"></script>
+</body>
+</html>
