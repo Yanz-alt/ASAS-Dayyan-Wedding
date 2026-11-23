@@ -1,6 +1,6 @@
 /**
  * ==============================================================================
- * THE WEDDING OF DAYYAN & AMANDA - JAVASCRIPT LOGIC
+ * THE WEDDING OF DAYYAN & HAIMIYA - JAVASCRIPT LOGIC
  * Asesmen Sumatif Akhir Semester (ASAS) XI RPL 2
  * 
  * Modul Lengkap:
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rsvpNameInput.value = cleanGuestName;
       }
       // Perbarui judul halaman agar lebih personal
-      document.title = `The Wedding of Dayyan & Amanda - Untuk ${cleanGuestName}`;
+      document.title = `The Wedding of Dayyan & Haimiya - Untuk ${cleanGuestName}`;
     } else {
       if (guestNameElement) {
         guestNameElement.textContent = 'Tamu Undangan';
@@ -156,9 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function initCountdown() {
     if (!countdownElement) return;
 
-    // Tanggal acara: Sabtu, 12 Desember 2026 pukul 08:00 WIB
+    // Tanggal acara: Sabtu, 12 Desember 2027 pukul 08:00 WIB
     const targetDateAttr = countdownElement.getAttribute('data-target-date');
-    const targetDate = targetDateAttr ? new Date(targetDateAttr).getTime() : new Date('2026-12-12T08:00:00+07:00').getTime();
+    const targetDate = targetDateAttr ? new Date(targetDateAttr).getTime() : new Date('2027-12-12T08:00:00+07:00').getTime();
 
     function updateTimer() {
       const now = new Date().getTime();
@@ -196,16 +196,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const icsContent = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
-        'PRODID:-//Dayyan & Amanda Wedding//ID',
+        'PRODID:-//Dayyan & Haimiya Wedding//ID',
         'CALSCALE:GREGORIAN',
         'METHOD:PUBLISH',
         'BEGIN:VEVENT',
-        'UID:wedding-dayyan-amanda-2026@domain.com',
-        'DTSTAMP:20260101T000000Z',
-        'DTSTART:20261212T010000Z',
-        'DTEND:20261212T080000Z',
-        'SUMMARY:The Wedding of Dayyan & Amanda',
-        'DESCRIPTION:Pernikahan Dayyan & Amanda di Grand Ballroom Grand Pacific Hotel Bandung.',
+        'UID:wedding-dayyan-haimiya-2027@domain.com',
+        'DTSTAMP:20270101T000000Z',
+        'DTSTART:20271212T010000Z',
+        'DTEND:20271212T080000Z',
+        'SUMMARY:The Wedding of Dayyan & Haimiya',
+        'DESCRIPTION:Pernikahan Dayyan & Haimiya di Grand Ballroom Grand Pacific Hotel Bandung.',
         'LOCATION:Grand Pacific Hotel, Jl. Pasir Kaliki No. 100, Bandung',
         'STATUS:CONFIRMED',
         'END:VEVENT',
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(blob);
-      link.setAttribute('download', 'Pernikahan_Dayyan_Amanda.ics');
+      link.setAttribute('download', 'Pernikahan_Dayyan_Haimiya.ics');
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -394,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalWishesBadge = document.getElementById('total-wishes-badge');
   const totalAttendingBadge = document.getElementById('total-attending-badge');
 
-  const STORAGE_KEY = 'wedding_dayyan_amanda_rsvp_data';
+  const STORAGE_KEY = 'wedding_dayyan_haimiya_rsvp_data';
 
   // Data bawaan awal agar buku tamu langsung terlihat indah saat pertama kali dibuka
   const defaultWishes = [
@@ -403,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: 'Bpk. Budi Santoso',
       attendance: 'Hadir',
       guests: '2',
-      message: 'Barakallahu lakum wa baraka alaikum. Selamat menempuh hidup baru untuk Dayyan & Amanda! Semoga selalu sakinah mawaddah warahmah.',
+      message: 'Barakallahu lakum wa baraka alaikum. Selamat menempuh hidup baru untuk Dayyan & Haimiya! Semoga selalu sakinah mawaddah warahmah.',
       date: new Date(Date.now() - 3600000 * 5).toISOString()
     },
     {
@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: 'Siti Rahmawati & Rekan',
       attendance: 'Hadir',
       guests: '2',
-      message: 'Alhamdulillah, selamat ya Mba Amanda dan Mas Dayyan! Ikut bahagia melihat perjalanan kalian berdua.',
+      message: 'Alhamdulillah, selamat ya Mba Haimiya dan Mas Dayyan! Ikut bahagia melihat perjalanan kalian berdua.',
       date: new Date(Date.now() - 3600000 * 12).toISOString()
     },
     {
@@ -419,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: 'Dimas Aditya',
       attendance: 'Tidak Hadir',
       guests: '1',
-      message: 'Selamat berbahagia sahabatku Dayyan & Amanda! Maaf belum bisa hadir langsung karena dinas luar kota. Doa terbaik selalu untuk kalian!',
+      message: 'Selamat berbahagia sahabatku Dayyan & Haimiya! Maaf belum bisa hadir langsung karena dinas luar kota. Doa terbaik selalu untuk kalian!',
       date: new Date(Date.now() - 3600000 * 24).toISOString()
     }
   ];
@@ -594,9 +594,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // ============================================================================
-  // 7. FITUR 4 & 7: SCROLL ANIMATION (INTERSECTION OBSERVER)
-  // ============================================================================
   const animatedElements = document.querySelectorAll('.animate-on-scroll');
 
   if ('IntersectionObserver' in window) {
