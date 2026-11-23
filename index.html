@@ -3,38 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="description" content="Undangan Pernikahan Digital Dayyan & Amanda - Sabtu, 12 Desember 2026">
+  <meta name="description" content="Undangan Pernikahan Digital Dayyan & Haimiya - Sabtu, 12 Desember 2027">
   <meta name="theme-color" content="#2D4A3E">
-
-  <!-- Open Graph / Meta Sosial -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="The Wedding of Dayyan & Amanda">
+  <meta property="og:title" content="The Wedding of Dayyan & Haimiya">
   <meta property="og:description" content="Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami.">
-  <meta property="og:image" content="assets/images/couple.jpg">
+  <meta property="og:image" content="images/couple.jpg">
 
-  <title>The Wedding of Dayyan & Amanda</title>
+  <title>The Wedding of Dayyan & Haimiya</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="no-scroll">
 
-  <!-- ==========================================
-       AUDIO LATAR BELAKANG (BACKGROUND MUSIC)
-  =========================================== -->
-  <audio id="bg-music" src="assets/audio/wedding-song.mp3" preload="auto" loop></audio>
-
-  <!-- ==========================================
-       FITUR 6: FLOATING MUSIC TOGGLE BUTTON
-  =========================================== -->
+  <!-- Background Music with Multiple Sources for Maximum Compatibility -->
+  <audio id="bg-music" preload="auto" loop>
+    <source src="audio/I Need a Love Story.mp3" type="audio/mpeg">
+    <source src="audio/wedding-song.mp3" type="audio/mpeg">
+  </audio>
   <button id="music-toggle" class="floating-music-btn" aria-label="Toggle Musik Latar" title="Putar / Hentikan Musik">
     <div class="music-disc" id="music-disc">
       <i class="fa-solid fa-compact-disc disc-icon"></i>
@@ -42,9 +34,6 @@
     <span class="music-status-icon"><i class="fa-solid fa-play" id="music-icon-state"></i></span>
   </button>
 
-  <!-- ==========================================
-       TOAST NOTIFICATION (COPY CLIPBOARD FEEDBACK)
-  =========================================== -->
   <div id="toast" class="toast-container" role="alert" aria-live="polite">
     <div class="toast-content">
       <i class="fa-solid fa-circle-check toast-icon"></i>
@@ -52,9 +41,6 @@
     </div>
   </div>
 
-  <!-- ===================================================
-       FITUR 1: COVER / HERO SAMPUL UNDANGAN (FULLSCREEN)
-  ==================================================== -->
   <section id="hero-cover" class="hero-cover">
     <div class="hero-cover-overlay"></div>
     <div class="hero-cover-content">
@@ -66,12 +52,12 @@
       </div>
 
       <p class="hero-subtitle">WALIMATUL 'URS</p>
-      <h1 class="hero-title">Dayyan &amp; Amanda</h1>
-      <p class="hero-date"><i class="fa-regular fa-calendar-days"></i> Sabtu, 12 Desember 2026</p>
+      <h1 class="hero-title">Dayyan &amp; Haimiya</h1>
+      <p class="hero-date"><i class="fa-regular fa-calendar-days"></i> Sabtu, 12 Desember 2027</p>
 
       <div class="guest-card">
         <p class="guest-label">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-        <!-- FITUR 1: NAMA TAMU DINAMIS VIA URL PARAMETER (?to=Nama+Tamu) -->
+        <!-- NAMA TAMU -->
         <div class="guest-name-wrapper">
           <h2 id="guest-name" class="guest-name">Tamu Undangan</h2>
         </div>
@@ -92,40 +78,31 @@
     </div>
   </section>
 
-  <!-- ==========================================
-       KONTEN UTAMA UNDANGAN (MOBILE-FIRST WRAPPER)
-  =========================================== -->
   <div class="main-layout">
     
     <!-- DESKTOP BACKGROUND DECORATION -->
     <aside class="desktop-side-banner" aria-hidden="true">
       <div class="side-banner-content">
         <span class="banner-badge">Official Invitation</span>
-        <h2>Dayyan &amp; Amanda</h2>
+        <h2>Dayyan &amp; Haimiya</h2>
         <p class="banner-quote">"Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri..."</p>
-        <div class="banner-date">12 . 12 . 2026</div>
+        <div class="banner-date">12 . 12 . 2027</div>
       </div>
     </aside>
 
     <main class="invitation-container" id="invitation-app">
 
-      <!-- ==========================================
-           HEADER INTRO SECTION
-      =========================================== -->
       <section class="section intro-section animate-on-scroll" id="intro">
         <div class="card-glass intro-card text-center">
           <div class="badge-pill">The Wedding Celebration</div>
-          <h2 class="couple-display-title">Dayyan &amp; Amanda</h2>
+          <h2 class="couple-display-title">Dayyan &amp; Haimiya</h2>
           <div class="couple-main-photo-frame">
-            <img src="assets/images/couple.jpg" alt="Dayyan dan Amanda" class="couple-main-photo" loading="lazy">
+            <img src="images/couple.jpg" alt="Dayyan dan Haimiya" class="couple-main-photo" loading="lazy">
           </div>
-          <p class="intro-date">Sabtu, 12 Desember 2026 &bull; Bandung, Jawa Barat</p>
+          <p class="intro-date">Sabtu, 12 Desember 2027 &bull; Bandung, Jawa Barat</p>
         </div>
       </section>
 
-      <!-- ==========================================
-           AYAT SUCI / KUTIPAN ROMANTIS SECTION
-      =========================================== -->
       <section class="section quran-section animate-on-scroll" id="quote">
         <div class="card-glass text-center">
           <div class="bismillah-svg">
@@ -155,9 +132,9 @@
           <!-- MEMPELAI PRIA -->
           <div class="card-glass couple-profile-card animate-on-scroll">
             <div class="profile-photo-circle">
-              <img src="assets/images/groom.jpg" alt="Muhammad Dayyan Pratama" loading="lazy">
+              <img src="images/groom.jpg" alt="Dayyan Nafi Zafir Rusman" loading="lazy">
             </div>
-            <h3 class="profile-name">Muhammad Dayyan Pratama, S.Kom</h3>
+            <h3 class="profile-name">Dayyan Nafi Zafir Rusman</h3>
             <p class="profile-parents">
               Putra sulung dari:<br>
               <strong>Bpk. Bambang Hermawan</strong> &amp;<br>
@@ -168,22 +145,22 @@
             </a>
           </div>
 
-          <!-- DIVIDER AMANDAND -->
+          <!-- DIVIDER AMPERSAND -->
           <div class="couple-ampersand">&amp;</div>
 
           <!-- MEMPELAI WANITA -->
           <div class="card-glass couple-profile-card animate-on-scroll">
             <div class="profile-photo-circle">
-              <img src="assets/images/bride.jpg" alt="Amanda Zahra Putri" loading="lazy">
+              <img src="images/bride.jpg" alt="Haimiya Mio" loading="lazy">
             </div>
-            <h3 class="profile-name">Amanda Zahra Putri, S.Ds</h3>
+            <h3 class="profile-name">Haimiya Mio</h3>
             <p class="profile-parents">
               Putri kedua dari:<br>
               <strong>Bpk. Irwan Santoso</strong> &amp;<br>
               <strong>Ibu Maya Lestari</strong>
             </p>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram Bride">
-              <i class="fa-brands fa-instagram"></i> @amandazahra
+              <i class="fa-brands fa-instagram"></i> @haimiya_mio
             </a>
           </div>
         </div>
@@ -203,7 +180,7 @@
         <!-- COUNTDOWN TIMER CONTAINER -->
         <div class="countdown-container card-glass animate-on-scroll">
           <p class="countdown-heading"><i class="fa-regular fa-clock"></i> Menghitung Hari Menuju Hari Bahagia</p>
-          <div class="countdown-grid" id="countdown-timer" data-target-date="2026-12-12T08:00:00+07:00">
+          <div class="countdown-grid" id="countdown-timer" data-target-date="2027-12-12T08:00:00+07:00">
             <div class="countdown-box">
               <span class="countdown-number" id="days">00</span>
               <span class="countdown-label">Hari</span>
@@ -223,7 +200,7 @@
           </div>
           <!-- BUTTON SIMPAN KE KALENDER -->
           <div class="calendar-actions">
-            <a id="btn-google-calendar" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Dayyan+%26+Amanda&dates=20261212T010000Z/20261212T080000Z&details=Undangan+Pernikahan+Dayyan+dan+Amanda.+Bertempat+di+Grand+Ballroom+Grand+Pacific+Hotel,+Bandung.&location=Grand+Pacific+Hotel,+Bandung" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <a id="btn-google-calendar" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Dayyan+%26+Haimiya&dates=20271212T010000Z/20271212T080000Z&details=Undangan+Pernikahan+Dayyan+dan+Haimiya+Mio.+Bertempat+di+Grand+Ballroom+Grand+Pacific+Hotel,+Bandung.&location=Grand+Pacific+Hotel,+Bandung" target="_blank" rel="noopener noreferrer" class="btn-secondary">
               <i class="fa-brands fa-google"></i> Simpan ke Google Calendar
             </a>
             <button id="btn-ics-calendar" class="btn-outline">
@@ -241,7 +218,7 @@
               <div class="event-day-box">
                 <span class="day-name">SABTU</span>
                 <span class="day-number">12</span>
-                <span class="day-month">DESEMBER 2026</span>
+                <span class="day-month">DESEMBER 2027</span>
               </div>
             </div>
             <div class="event-detail-item">
@@ -265,7 +242,7 @@
               <div class="event-day-box">
                 <span class="day-name">SABTU</span>
                 <span class="day-number">12</span>
-                <span class="day-month">DESEMBER 2026</span>
+                <span class="day-month">DESEMBER 2027</span>
               </div>
             </div>
             <div class="event-detail-item">
@@ -305,7 +282,7 @@
               allowfullscreen="" 
               loading="lazy" 
               referrerpolicy="no-referrer-when-downgrade"
-              title="Peta Lokasi Pernikahan Dayyan & Amanda">
+              title="Peta Lokasi Pernikahan Dayyan & Haimiya">
             </iframe>
           </div>
           <div class="map-button-group text-center">
@@ -331,27 +308,27 @@
         <!-- GALLERY GRID (MINIMAL 4 FOTO, KITA SEDIAKAN 6 FOTO ESTETIK) -->
         <div class="gallery-grid">
           <div class="gallery-item animate-on-scroll" data-index="0" data-caption="Pertemuan awal yang penuh makna">
-            <img src="assets/images/gallery1.jpg" alt="Galeri Foto 1" loading="lazy">
+            <img src="images/gallery1.jpg" alt="Galeri Foto 1" loading="lazy">
             <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
           </div>
           <div class="gallery-item animate-on-scroll" data-index="1" data-caption="Tawa ceria bersama di bawah langit senja">
-            <img src="assets/images/gallery2.jpg" alt="Galeri Foto 2" loading="lazy">
+            <img src="images/gallery2.jpg" alt="Galeri Foto 2" loading="lazy">
             <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
           </div>
           <div class="gallery-item animate-on-scroll" data-index="2" data-caption="Menjalin komitmen menuju masa depan bersama">
-            <img src="assets/images/gallery3.jpg" alt="Galeri Foto 3" loading="lazy">
+            <img src="images/gallery3.jpg" alt="Galeri Foto 3" loading="lazy">
             <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
           </div>
           <div class="gallery-item animate-on-scroll" data-index="3" data-caption="Hari bahagia di pelataran kenangan indah">
-            <img src="assets/images/gallery4.jpg" alt="Galeri Foto 4" loading="lazy">
+            <img src="images/gallery4.jpg" alt="Galeri Foto 4" loading="lazy">
             <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
           </div>
           <div class="gallery-item animate-on-scroll" data-index="4" data-caption="Saling melengkapi dalam setiap langkah cita">
-            <img src="assets/images/gallery5.jpg" alt="Galeri Foto 5" loading="lazy">
+            <img src="images/gallery5.jpg" alt="Galeri Foto 5" loading="lazy">
             <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
           </div>
           <div class="gallery-item animate-on-scroll" data-index="5" data-caption="Menuju ikrar suci pernikahan seumur hidup">
-            <img src="assets/images/gallery6.jpg" alt="Galeri Foto 6" loading="lazy">
+            <img src="images/gallery6.jpg" alt="Galeri Foto 6" loading="lazy">
             <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
           </div>
         </div>
@@ -392,7 +369,7 @@
                 <span class="account-label">Nomor Rekening:</span>
                 <span class="account-number" id="acc-bca">7720183921</span>
               </div>
-              <p class="account-holder">a.n. Muhammad Dayyan Pratama</p>
+              <p class="account-holder">a.n. Dayyan Nafi Zafir Rusman</p>
               <button class="btn-copy" data-clipboard-target="#acc-bca" data-label="Rekening BCA">
                 <i class="fa-regular fa-copy"></i> Salin Nomor Rekening
               </button>
@@ -410,7 +387,7 @@
                 <span class="account-label">Nomor Rekening:</span>
                 <span class="account-number" id="acc-mandiri">1310029384756</span>
               </div>
-              <p class="account-holder">a.n. Amanda Zahra Putri</p>
+              <p class="account-holder">a.n. Haimiya Mio</p>
               <button class="btn-copy" data-clipboard-target="#acc-mandiri" data-label="Rekening Mandiri">
                 <i class="fa-regular fa-copy"></i> Salin Nomor Rekening
               </button>
@@ -426,7 +403,7 @@
             <div class="bank-body">
               <div class="account-number-wrapper">
                 <span class="account-label">Alamat Penerima:</span>
-                <p class="account-number text-small" id="acc-address">Jl. Flamboyan Regency No. 24, Sukajadi, Kota Bandung, Jawa Barat 40161 (Penerima: Dayyan & Amanda / 0812-3456-7890)</p>
+                <p class="account-number text-small" id="acc-address">Jl. Flamboyan Regency No. 24, Sukajadi, Kota Bandung, Jawa Barat 40161 (Penerima: Dayyan & Haimiya / 0812-3456-7890)</p>
               </div>
               <button class="btn-copy" data-clipboard-target="#acc-address" data-label="Alamat Kado">
                 <i class="fa-regular fa-copy"></i> Salin Alamat Pengiriman
@@ -528,24 +505,21 @@
           <p class="closing-salam">Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
           <div class="closing-family">
             <p>Kami yang berbahagia,</p>
-            <h3 class="closing-couple-name">Dayyan &amp; Amanda</h3>
+            <h3 class="closing-couple-name">Dayyan &amp; Haimiya</h3>
             <p class="family-names">Beserta Seluruh Keluarga Besar Kedua Mempelai</p>
           </div>
         </div>
       </section>
 
-      <!-- ==========================================
-           FOOTER / CREDITS
-      =========================================== -->
+
       <footer class="invitation-footer text-center">
-        <p>&copy; 2026 The Wedding of Dayyan &amp; Amanda.</p>
+        <p>&copy; 2027 The Wedding of Dayyan &amp; Haimiya.</p>
         <p class="sub-footer">Dibuat untuk Asesmen Sumatif Akhir Semester (ASAS) XI RPL 2</p>
       </footer>
 
     </main>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
   <script src="script.js"></script>
 </body>
 </html>
